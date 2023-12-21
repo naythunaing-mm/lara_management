@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Department extends Model
 {
@@ -18,4 +19,10 @@ class Department extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function getEmployees()
+    {
+        return $this->hasMany(User::class, 'department_id', 'id');
+    }
+
 }

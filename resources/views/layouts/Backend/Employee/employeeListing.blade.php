@@ -23,7 +23,11 @@
                         <td>{{ $employee->employee_id }}</td>
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->email }}</td>
-                        <td>{{ $employee->department_id }}</td>
+                        <td>
+                            @if(optional($employee->getDepartment)->department != null)
+                                {{ $employee->getDepartment->department }}
+                            @endif
+                        </td>
                         <td>{{ $employee->nrc_number }}</td>
                         <td>
                             <a class="" href="{{ URL::to('admin-backend/employee/edit') }}/{{ $employee->id }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>

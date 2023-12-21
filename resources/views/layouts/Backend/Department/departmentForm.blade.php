@@ -9,8 +9,8 @@
                 <div class="col-xxl">
                     <div class="card mb-4">
                         <div class="card-body">
-                            @if(isset($view))
-                                <form action="{{ route('viewUpdate') }}" method="POST" class="needs-validation" id="formAuthentication" novalidate>
+                            @if(isset($departments))
+                                <form action="{{ route('departmentUpdate') }}" method="POST" class="needs-validation" id="formAuthentication" novalidate>
                             @else
                                 <form action="{{ route('departmentStore') }}" method="POST" class="needs-validation" id="formAuthentication" novalidate>
                             @endif
@@ -23,7 +23,7 @@
                                                 type  = "text"
                                                 class = "form-control"
                                                 name  = "department"
-                                                value = "{{ (isset($view)) ? $view->department : '' }}"
+                                                value = "{{ (isset($departments)) ? $departments->department : '' }}"
                                                 id = "basic-icon-default-fullname"
                                                 placeholder="General Manager"
                                                 aria-label="General Manager"
@@ -42,9 +42,9 @@
                                 </div>
                                 <div class="row justify-content-end">
                                     <div class="col-sm-10">
-                                        {{-- @if(isset($view))
-                                            <input type="hidden" name="id" value="{{ $view->id }}" />
-                                        @endif --}}
+                                        @if(isset($departments))
+                                            <input type="hidden" name="id" value="{{ $departments->id }}" />
+                                        @endif
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

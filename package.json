@@ -12,5 +12,10 @@
         "laravel-vite-plugin": "^0.8.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^8.0"
     }
+    
 }

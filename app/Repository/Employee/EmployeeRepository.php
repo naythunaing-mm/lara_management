@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Repository\Employee;
 
 use App\Utility;
@@ -6,10 +7,12 @@ use App\Constant;
 use App\Models\User;
 use App\ReturnMessages;
 
-class EmployeeRepository implements EmployeeRepositoryInterface {
-    public function employeeStore($paraData) {
+class EmployeeRepository implements EmployeeRepositoryInterface
+{
+    public function employeeStore($paraData)
+    {
         $returnObj = array();
-        $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+        $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
             $paraObj = new User();
             $paraObj->name        = $paraData['name'];
@@ -26,24 +29,35 @@ class EmployeeRepository implements EmployeeRepositoryInterface {
             $paraObj->status        = $paraData['status'];
             $tempObj                = Utility::addCreated($paraObj);
             $tempObj->save();
-            $returnObj['LaraHR'] = ReturnMessages::OK;
+            $returnObj['LaraManagement'] = ReturnMessages::OK;
             return  $returnObj;
         } catch(\Exception $e) {
-            $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+            $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
     }
 
-    public function employeeListing() {
-        $Employee = User::SELECT("id","name","email","employee_id","department_id","nrc_number")
-                    ->whereNULL("deleted_at")
-                    ->orderBy("id","asc")
+    // public function employeeListing() {
+    //     $Employee = User::SELECT("id","name","email","employee_id","department_id","nrc_number")
+    //                 ->whereNULL("deleted_at")
+    //                 ->orderBy("id","asc")
+    //                 ->paginate(Constant::PAGE_LIMIT);
+    //     return $Employee;
+    // }
+
+    public function employeeListing()
+    {
+        $employees = User::with('getDepartment')
+                    ->whereNull('deleted_at')
+                    ->orderBy('id', 'asc')
                     ->paginate(Constant::PAGE_LIMIT);
-        return $Employee;
+        return $employees;
     }
 
-    public function employeeEdit($id) {
+
+    public function employeeEdit($id)
+    {
         $employee = User::find($id);
         return $employee;
     }
-} 
+}

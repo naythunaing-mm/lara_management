@@ -93,7 +93,7 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ $employee->address }}" required/>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ (isset($employee)? $employee->address : '') }}" required />
                         <div class="invalid-feedback">
                           @if ($errors->has('address'))
                           <p style="color:red">Please valid address</p>

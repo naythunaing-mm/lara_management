@@ -18,12 +18,15 @@ class userTableSeeder extends Seeder
 
          // Insert a user record
         DB::table('users')->insert([
-            'id'         => '1',
-            'name'       => 'admin',
-            'email'      => 'admin@gmail.com',
-            'password'   => bcrypt('password'),
-            'created_at'  => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'id'            => '1',
+            'employee_id'   => 'LMS-00000001',
+            'name'          => 'admin',
+            'department_id' => '1',
+            'nrc_number'    => '7/kakana(N)110538',
+            'email'         => 'admin@gmail.com',
+            'password'      => bcrypt('password'),
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
         ]);
     }
 }

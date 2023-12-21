@@ -22,48 +22,48 @@ class ViewRepository implements ViewRepositoryInterface {
 
     public function viewStore($paraData) {
         $returnObj = array();
-        $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+        $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
             $paraObj = new View();
             $paraObj->name = $paraData['name'];
             $tempObj       = Utility::addCreated($paraObj);
             $tempObj->save();
-            $returnObj['LaraHR'] = ReturnMessages::OK;
+            $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch (\Exception $e) {
-            $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+            $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
     }
 
     public function viewUpdate($paraData) {
         $returnObj = array();
-        $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+        $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
-            $id = $paraData['id'];
-            $paraObj = View::find($id);
-            $paraObj->name = $paraData['name'];
-            $tempObj       = Utility::addUpdated($paraObj);
+            $id                          = $paraData['id'];
+            $paraObj                     = View::find($id);
+            $paraObj->name               = $paraData['name'];
+            $tempObj                     = Utility::addUpdated($paraObj);
             $tempObj->save();
-            $returnObj['LaraHR'] = ReturnMessages::OK;
+            $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch (\Exception $e) {
-            $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+            $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
     }
 
     public function viewDelete($id) {
         $returnObj = array();
-        $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+        $returnObj['LaraManagement']     = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj = View::find($id);
-            $temObj  = Utility::addDeleted($paraObj);
+            $paraObj                     = View::find($id);
+            $temObj                      = Utility::addDeleted($paraObj);
             $temObj->save();
-            $returnObj['LaraHR'] = ReturnMessages::OK;
+            $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch (\Exception $e) {
-            $returnObj['LaraHR'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+            $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
     }
