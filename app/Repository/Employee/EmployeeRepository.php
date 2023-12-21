@@ -37,23 +37,13 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         }
     }
 
-    // public function employeeListing() {
-    //     $Employee = User::SELECT("id","name","email","employee_id","department_id","nrc_number")
-    //                 ->whereNULL("deleted_at")
-    //                 ->orderBy("id","asc")
-    //                 ->paginate(Constant::PAGE_LIMIT);
-    //     return $Employee;
-    // }
-
-    public function employeeListing()
-    {
-        $employees = User::with('getDepartment')
-                    ->whereNull('deleted_at')
-                    ->orderBy('id', 'asc')
+    public function employeeListing() {
+        $Employee = User::SELECT("id","name","email","employee_id","department_id","nrc_number")
+                    ->whereNULL("deleted_at")
+                    ->orderBy("id","asc")
                     ->paginate(Constant::PAGE_LIMIT);
-        return $employees;
+        return $Employee;
     }
-
 
     public function employeeEdit($id)
     {

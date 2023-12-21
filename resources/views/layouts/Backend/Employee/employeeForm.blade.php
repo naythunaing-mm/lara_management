@@ -125,13 +125,13 @@
                       </div>
 
                       <div class="mb-3 col-md-6">
-                        <label for="department_id" class="form-label">Department-ID</label>
+                        <label for="department_id" class="form-label">Department</label>
                         <select id="department_id" class="select2 form-select" name="department_id" required>
-                          <option value="">Select Language</option>
-                          <option value="1">English</option>
-                          <option value="2">French</option>
-                          <option value="3">German</option>
-                          <option value="4">Portuguese</option>
+                          @if(isset($departments))
+                            @foreach($departments as $department)
+                              <option value="{{$department->id}}">{{$department->department}}</option>
+                            @endforeach
+                          @endif
                         </select>
                         <div class="invalid-feedback">
                           @if ($errors->has('department_id'))

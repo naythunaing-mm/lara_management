@@ -7,20 +7,26 @@ use App\ReturnMessages;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Employee\employeeRequest;
+use App\Repository\Department\DepartmentRepositoryInterface;
 use App\Repository\Employee\EmployeeRepository;
 use App\Repository\Employee\EmployeeRepositoryInterface;
 
 class employeeController extends Controller
 {
     private $employeeRepository;
-    public function __construct(EmployeeRepositoryInterface $employeeRepository)
+    private $departmentRepository;
+    public function __construct(
+        EmployeeRepositoryInterface $employeeRepository, 
+        DepartmentRepositoryInterface $departmentRepository)
     {
         DB::connection()->enableQueryLog();
         $this->employeeRepository = $employeeRepository;
+        $this->departmentRepository = $departmentRepository;
     }
     public function employeeForm()
     {
-        return view('layouts.Backend.Employee.employeeForm');
+        $departments = $this->departmentRepository->getDepartments();
+        return view('layouts.Backend.Employee.employeeForm', compact(['departments']));
     }
 
     public function employeeStore(employeeRequest $request)
