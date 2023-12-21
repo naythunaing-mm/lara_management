@@ -184,22 +184,12 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Authentications</div>
+                <div data-i18n="Authentications">HotelSetting</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Login</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Register</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Forgot Password</div>
+                    <div data-i18n="Basic">Profile</div>
                   </a>
                 </li>
               </ul>
@@ -207,17 +197,17 @@
 
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Authentications">Department</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('departmentForm') }}" class="menu-link" target="_blank">
+                  <a href="{{ route('departmentForm') }}" class="menu-link" />
                     <div data-i18n="Basic">Role</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ route('departmentListing') }}" class="menu-link" target="_blank">
+                  <a href="{{ route('departmentListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>
