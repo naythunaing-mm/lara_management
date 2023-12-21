@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     Route::prefix('department')->group(function () {
         Route::get('form', [departmentController::class,'departmentForm'])->name('departmentForm');
         Route::get('edit/{id}', [departmentController::class,'editForm']);
+        Route::get('delete/{id}',[departmentController::class, 'departmentDelete']);
         Route::post('departmentUpdate', [departmentController::class,'departmentUpdate'])->name('departmentUpdate');
         Route::post('departmentStore', [departmentController::class,'departmentStore'])->name('departmentStore');
         Route::get('departmentListing', [departmentController::class,'departmentListing'])->name('departmentListing');

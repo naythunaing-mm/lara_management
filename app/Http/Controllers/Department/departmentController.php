@@ -81,4 +81,22 @@ class departmentController extends Controller
             abort(500);
         }
     }
+
+    public function departmentDelete($id)
+    {
+        try {
+            $result = $this->departmentRepository->getDelete($id);
+            $logs   = "Department Delete Screen :: ";
+            Utility::saveLog($logs);
+            if ($result['LaraManagement'] == ReturnMessages::OK) {
+                return redirect('admin-backend/department/departmentListing')->with('success_msg', 'Data Delete Successful.');
+            } else {
+                return redirect('admin-backend/department/departmentListing')->with('error_msg', 'Data Delete Fail!');
+            }
+        } catch (\Exception $e) {
+            $logs = "Department Delete Error :: ";
+            $logs = $e->getMessage();
+            abort(500);
+        }
+    }
 }

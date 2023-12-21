@@ -7,6 +7,7 @@ use App\Constant;
 use App\ReturnMessages;
 use App\Models\Department;
 use App\Repository\Department\DepartmentRepositoryInterface;
+use Illuminate\Support\Arr;
 
 class DepartmentRepository implements DepartmentRepositoryInterface
 {
@@ -55,6 +56,22 @@ class DepartmentRepository implements DepartmentRepositoryInterface
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch(\Exception $e) {
+            $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+            return $returnObj;
+        }
+    }
+
+    public function getDelete($id)
+    {
+        $returnObj   = array();
+        $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
+        try {
+            $paraObj                 = Department::find($id);
+            $tempObj                 = Utility::addDeleted($paraObj);
+            $tempObj->save();
+            $returnObj['LaraManagement'] = ReturnMessages::OK;
+            return $returnObj;
+        } catch (\Exception $e) {
             $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }

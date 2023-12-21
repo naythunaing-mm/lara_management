@@ -8,4 +8,5 @@ interface DepartmentRepositoryInterface
     public function getDepartments();
     public function editForm($id);
     public function getUpdate($paraData);
+    public function getDelete($id);
 }

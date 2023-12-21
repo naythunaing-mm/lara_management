@@ -4,7 +4,14 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y authentication-wrapper authentication-basic">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Department Form/</span> Register</h4>
+        <h4 class="fw-bold py-3 mb-4">
+            <span class="text-muted fw-light">Department Form/</span>
+            @if(isset($departments))
+            <span>Edit</span>
+            @else
+            <span>Register</span>
+        @endif
+        </h4>
             <div class="row">
                 <div class="col-xxl">
                     <div class="card mb-4">
