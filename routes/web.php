@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Department\departmentController;
 use App\Http\Controllers\Employee\employeeController;
 use App\Http\Controllers\Home\indexContoller;
+use App\Http\Controllers\Setting\settingController;
 use App\Http\Controllers\View\viewController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,5 +57,11 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::get('departmentListing', [departmentController::class,'departmentListing'])->name('departmentListing');
         Route::post('departmentUpdate', [departmentController::class,'departmentUpdate'])->name('departmentUpdate');
         Route::post('departmentStore', [departmentController::class,'departmentStore'])->name('departmentStore');
+    });
+
+    // Setting Route
+    Route::prefix('setting')->group(function () {
+        Route::get('edit', [settingController::class, 'editForm'])->name('siteSetting');
+        Route::post('settingUpdate', [settingController::class, 'settingUpdate'])->name('settingUpdate');
     });
 });

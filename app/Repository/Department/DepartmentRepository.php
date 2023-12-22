@@ -7,7 +7,6 @@ use App\Constant;
 use App\ReturnMessages;
 use App\Models\Department;
 use App\Repository\Department\DepartmentRepositoryInterface;
-use Illuminate\Support\Arr;
 
 class DepartmentRepository implements DepartmentRepositoryInterface
 {
