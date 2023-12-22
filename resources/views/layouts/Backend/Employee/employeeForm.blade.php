@@ -13,7 +13,7 @@
                 <hr class="my-0" />
                 <div class="card-body">
                   @if(isset($employee))
-                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeStore') }}" novalidate>
+                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeUpdate') }}" novalidate>
                   @else
                   <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeStore') }}" novalidate>
                   @endif
@@ -22,7 +22,7 @@
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label for="employee_id" class="form-label">Employee-ID</label>
-                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="LaraHR-1001" value="{{ (isset($employee)? $employee->employee_id : '') }}" autofocus required />
+                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="LMS-00000001" value="{{ (isset($employee)? $employee->employee_id : '') }}" autofocus required />
                         <div class="invalid-feedback">
                           @if ($errors->has('employee_id'))
                           <p style="color:red">Please valid employee_id</p>
@@ -104,7 +104,7 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="birthday" class="form-label">Birthday</label>
-                        <input class="form-control" type="date" id="birthday" name="birthday" value="{{ (isset($employee)? $employee->birthday : '') }}" required />
+                        <input class="form-control" type="date" id="birthday" name="birthday" value="{{ (isset($employee) ? \Carbon\Carbon::parse($employee->birthday)->format('Y-m-d') : '') }}" required />
                         <div class="invalid-feedback">
                           @if ($errors->has('birthday'))
                           <p style="color:red">Please valid birthday</p>
@@ -115,21 +115,22 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="date_of_join" class="form-label">Date Of Join</label>
-                        <input  type="date" class="form-control"  id="date_of_join"  name="date_of_join" value="{{ (isset($employee)? $employee->date_of_join : '') }}" required  />
-                        <div class="invalid-feedback">
+                        <input type="date" class="form-control" id="date_of_join" name="date_of_join" value="{{ (isset($employee) ? \Carbon\Carbon::parse($employee->date_of_join)->format('Y-m-d') : '') }}" required />
+                          <div class="invalid-feedback">
                           @if ($errors->has('date_of_join'))
-                          <p style="color:red">Please valid date_of_join</p>
+                          <p style="color:red">Please enter a valid date for Date Of Join</p>
                           @endif
                           Invalid Date Of Join
-                        </div>
+                          </div>
                       </div>
 
                       <div class="mb-3 col-md-6">
                         <label for="department_id" class="form-label">Department</label>
                         <select id="department_id" class="select2 form-select" name="department_id" required>
+                          <option value="">Choose Department</option>
                           @if(isset($departments))
                             @foreach($departments as $department)
-                              <option value="{{$department->id}}">{{$department->department}}</option>
+                              <option value="{{$department->id}}" {{ old('department_id', isset($employee) ? $employee->department_id : null) == $department->id ? 'selected' : '' }}>{{$department->department}}</option>
                             @endforeach
                           @endif
                         </select>
@@ -145,8 +146,8 @@
                         <label for="gender" class="form-label">Gender</label>
                         <select id="gender" class="select2 form-select" name="gender" required>
                           <option value="">Select Gender</option>
-                          <option value="0">Male</option>
-                          <option value="1">Female</option>
+                          <option value="0" {{old('gender', isset($employee) && $employee->gender == 0 ? 'selected' : '')}}>Male</option>
+                          <option value="1" {{old('gender', isset($employee) && $employee->gender == 1 ? 'selected' : '')}}>Female</option>
                         </select>
                         <div class="invalid-feedback">
                           @if ($errors->has('gender'))
@@ -160,8 +161,8 @@
                         <label for="status" class="form-label">Status</label>
                         <select id="status" class="select2 form-select" name="status" required>
                           <option value="">Select Status</option>
-                          <option value="0">Leave</option>
-                          <option value="1">Present</option>
+                          <option value="0" {{ old('status', isset($employee) && $employee->status == 0 ? 'selected' : '') }}>Leave</option>
+                          <option value="1" {{ old('status', isset($employee) && $employee->status == 1 ? 'selected' : '') }}>Present</option>
                         </select>
                         <div class="invalid-feedback">
                           @if ($errors->has('status'))
@@ -171,9 +172,10 @@
                         </div>
                       </div>
                     </div>
+
                     <div class="mt-2">
                       @if(isset($employee))
-                      <input type="hidden" name="id" value={{ $employee->id }}>
+                      <input type="hidden" name="id" value="{{ $employee->id }}" />
                       @endif
                       <input type="submit" class="btn btn-primary me-2">
                     </div>
@@ -181,37 +183,10 @@
                 </div>
                 <!-- /Account -->
               </div>
-              <div class="card">
-                <h5 class="card-header">Delete Account</h5>
-                <div class="card-body">
-                  <div class="mb-3 col-12 mb-0">
-                    <div class="alert alert-warning">
-                      <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                      <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                    </div>
-                  </div>
-                  {{-- <form id="formAccountDeactivation" onsubmit="return false">
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        name="accountActivation"
-                        id="accountActivation"
-                      />
-                      <label class="form-check-label" for="accountActivation"
-                        >I confirm my account deactivation</label
-                      >
-                    </div>
-                    <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-                  </form> --}}
-                </div>
-              </div>
             </div>
           </div>
         </div>
         <!-- / Content -->
-
-        <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
 

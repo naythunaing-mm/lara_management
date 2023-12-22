@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +15,7 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('nrc_number')->unique()->nullable();
             $table->date('birthday')->nullable();
-            $table->enum('gender',['male', 'female'])->nullable();
+            $table->boolean('gender')->default(false);
             $table->text('address')->nullable();
             $table->bigInteger('department_id')->nullable();
             $table->date('date_of_join')->nullable();
