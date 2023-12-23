@@ -62,9 +62,32 @@
   
       <!-- Page JS -->
       <script src="{{ URL::asset('admin-backend/assets/js/dashboards-analytics.js') }}"></script>
-  
       <!-- Place this tag in your head or just before your close body tag. -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
+      @if (session('success_msg'))
+      <script>
+          Swal.fire({
+              position: "mid",
+              icon: "success",
+              title: "Successful.",
+              showConfirmButton: false,
+              timer: 1500
+          });
+      </script>
+      @endif
+
+      @if (session('error_msg'))
+      <script>
+          Swal.fire({
+              position: "mid",
+              icon: "error",
+              title: "Something Wrong!",
+              showConfirmButton: false,
+              timer: 1500
+          });
+      </script>
+      @endif
+
       <script>
         (function () {
             'use strict';
@@ -81,7 +104,26 @@
                     }, false);
                 });
         })();
-    </script>
 
+    </script>
+    <script>
+      $(document).ready(function () {
+          $('.profile').on('change', function () {
+              var file_length = document.getElementById('profile').files.length;
+              $('.preview-img').html('');
+              for (var i = 0; i < file_length; i++) {
+                  $('.preview-img').append(`<img
+                            src="${URL.createObjectURL(event.target.files[i])}"
+                            alt="user-avatar"
+                            class="d-block rounded"
+                            height="130"
+                            width="130"
+                            id="uploadedAvatar"
+                            name="file" required 
+                            />`);
+              }
+          });
+      });
+    </script>
     </body>
   </html>

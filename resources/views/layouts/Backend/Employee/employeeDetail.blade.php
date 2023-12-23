@@ -13,14 +13,17 @@
                  <!-- Account -->
                  <div class="card-body">
                     <div class="d-flex align-items-center justify-content-center gap-4">
-                      <img
-                        src="{{URL::asset('admin-backend/assets/img/avatars/1.png')}}"
-                        alt="user-avatar"
-                        class="d-block rounded"
-                        height="130"
-                        width="130"
-                        id="uploadedAvatar"
-                      />
+                      @if(isset($employee))
+                          <img
+                          src="{{$employee->profilePath()}}"
+                          alt="user-avatar"
+                          class="d-block rounded"
+                          height="130"
+                          width="130"
+                          id="uploadedAvatar"
+                          name="file" required 
+                          />
+                          @endif
                       <div class="button-wrapper">
                           <input
                             type="file"

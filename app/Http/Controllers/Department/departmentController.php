@@ -29,9 +29,9 @@ class departmentController extends Controller
             $logs   = "Department Insert Screen :: ";
             Utility::saveLog($logs);
             if($result['LaraManagement'] == ReturnMessages::OK) {
-                return redirect('admin-backend/department/departmentListing');
+                return redirect('admin-backend/department/departmentListing')->with('success_msg', 'Data Insert Successful.');
             } else {
-                return redirect('admin-backend/department/departmentListing');
+                return redirect('admin-backend/department/departmentListing')->with('error_msg', 'Data Insert Fail!');
             }
         } catch (\Exception $e) {
             $logs = "Department Insert Error ::";

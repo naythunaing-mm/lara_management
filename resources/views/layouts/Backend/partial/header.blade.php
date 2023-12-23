@@ -22,9 +22,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
-
+    <script src="{{ URL::asset('admin-backend/js/sweetalert2@11.js') }}"></script>
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/success_msg.css') }}">
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
@@ -34,7 +35,6 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
-
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -476,7 +476,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
+              {{-- <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-search fs-4 lh-0"></i>
                   <input
@@ -486,7 +486,7 @@
                     aria-label="Search..."
                   />
                 </div>
-              </div>
+              </div> --}}
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -494,12 +494,12 @@
                 <li class="nav-item lh-1 me-3">
                   <a
                     class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                    href="javascript:void(0);"
                     data-icon="octicon-star"
                     data-size="large"
                     data-show-count="true"
                     aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
+                    >{{ Auth::guard('Admin')->user()->name }}</a
                   >
                 </li>
 
@@ -507,7 +507,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="{{ URL::asset('admin-backend/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{{ Auth::guard('Admin')->user()->profilePath() }}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -516,12 +516,15 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="{{ URL::asset('admin-backend/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="{{ Auth::guard('Admin')->user()->profilePath() }}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">{{ Auth::guard('Admin')->user()->name }}</span>
+                            <small class="text-muted">
+                              {{ optional(Auth::guard('Admin')->user()->getDepartment)->department }}
+                          </small>
+                          
                           </div>
                         </div>
                       </a>

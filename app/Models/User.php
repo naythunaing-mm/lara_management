@@ -51,6 +51,13 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 
+    public function profilePath() {
+        if($this->profile) {
+            return asset('Storage/employee/'.$this->profile);
+        }
+        return null;
+    }
+
     /**
      * The attributes that should be cast.
      *

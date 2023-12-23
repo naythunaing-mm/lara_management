@@ -31,8 +31,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     {
         $departments = Department::SELECT("id", "department")
                        ->whereNULL("deleted_at")
-                       ->orderBy("id", "asc")
-                       ->paginate(Constant::PAGE_LIMIT);
+                       ->orderBy("id", "desc")->get();
         return $departments;
     }
 

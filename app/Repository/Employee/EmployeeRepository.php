@@ -6,6 +6,7 @@ use App\Utility;
 use App\Constant;
 use App\Models\User;
 use App\ReturnMessages;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
@@ -14,28 +15,38 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $returnObj = array();
         $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
+            $profile_name = null;
+            if(isset($paraData['profile'])) {
+                // Corrected the array access for the profile file
+                $profile_file = $paraData['profile'];
+                $profile_name = uniqid().'_'.time().'.'.$profile_file->getClientOriginalExtension();
+                // Used store method to save the file
+                $profile_file->storeAs('employee', $profile_name, 'public');
+            }
             $paraObj = new User();
-            $paraObj->name        = $paraData['name'];
-            $paraObj->email       = $paraData['email'];
-            $paraObj->phone       = $paraData['phone'];
-            $paraObj->nrc_number  = $paraData['nrc_number'];
-            $paraObj->password    = $paraData['password'];
-            $paraObj->birthday    = $paraData['birthday'];
-            $paraObj->gender      = $paraData['gender'];
-            $paraObj->address     = $paraData['address'];
-            $paraObj->employee_id = $paraData['employee_id'];
+            $paraObj->profile       = $profile_name;
+            $paraObj->name          = $paraData['name'];
+            $paraObj->email         = $paraData['email'];
+            $paraObj->phone         = $paraData['phone'];
+            $paraObj->nrc_number    = $paraData['nrc_number'];
+            $paraObj->password      = $paraData['password'];
+            $paraObj->birthday      = $paraData['birthday'];
+            $paraObj->gender        = $paraData['gender'];
+            $paraObj->address       = $paraData['address'];
+            $paraObj->employee_id   = $paraData['employee_id'];
             $paraObj->department_id = $paraData['department_id'];
             $paraObj->date_of_join  = $paraData['date_of_join'];
             $paraObj->status        = $paraData['status'];
             $tempObj                = Utility::addCreated($paraObj);
             $tempObj->save();
             $returnObj['LaraManagement'] = ReturnMessages::OK;
-            return  $returnObj;
+            return $returnObj;
         } catch(\Exception $e) {
             $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
     }
+    
 
     public function employeeListing()
     {
@@ -59,6 +70,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         try {
             $id                     = $paraData['id'];
             $paraObj                = User::find($id);
+
+            $profile_name = $paraObj->profile;
+            if(isset($paraData['profile'])) {
+                Storage::disk('public')->delete('employee/'.$paraObj->profile);
+                $profile_file = $paraData['profile'];
+                $profile_name = uniqid().'_'.time().'.'.$profile_file->getClientOriginalExtension();
+                $profile_file->storeAs('employee', $profile_name, 'public');
+            }
+            $paraObj->profile       = $profile_name;
             $paraObj->name          = $paraData['name'];
             $paraObj->email         = $paraData['email'];
             $paraObj->phone         = $paraData['phone'];

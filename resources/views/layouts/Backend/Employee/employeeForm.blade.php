@@ -9,16 +9,50 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>   
-                <hr class="my-0" />
+                <h5 class="card-header">Register</h5>   
                 <div class="card-body">
                   @if(isset($employee))
-                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeUpdate') }}" novalidate>
+                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeUpdate') }}" enctype="multipart/form-data" novalidate>
                   @else
-                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeStore') }}" novalidate>
+                  <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeStore') }}" enctype="multipart/form-data" novalidate>
                   @endif
                     @csrf
-
+                    <div class="d-flex align-items-center justify-content-center gap-4">
+                      <div class="preview-img">
+                          @if(isset($employee))
+                          <img
+                          src="{{ $employee->profilePath() }}"
+                          alt="user-avatar"
+                          class="d-block rounded"
+                          height="130"
+                          width="130"
+                          id="uploadedAvatar"
+                          name="file" required 
+                          />
+                          @endif
+                      </div>
+                      <div class="button-wrapper">
+                        <label for="profile" class="btn btn-primary me-2 mb-4" tabindex="0">
+                          <i class="bx bx-upload"> Upload</i>
+                          <input
+                            type="file"
+                            id="profile"
+                            class="profile"
+                            name='profile' multiple
+                            hidden
+                            accept="image/png, image/jpeg" required
+                          />
+                        </label>
+                        <div class="invalid-feedback">
+                          @if ($errors->has('profile'))
+                          <p style="color:red">Please valid image</p>
+                          @endif
+                          Invalid Image
+                        </div>
+                        <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                      </div>
+                    </div>
+                    <hr class="my-0 mt-4 mb-3" />
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label for="employee_id" class="form-label">Employee-ID</label>
@@ -189,5 +223,4 @@
         <!-- / Content -->
     </div>
     <!-- Content wrapper -->
-
 @endsection
