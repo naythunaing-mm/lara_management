@@ -27,7 +27,7 @@
                           height="130"
                           width="130"
                           id="uploadedAvatar"
-                          name="file" required 
+                          name="file" 
                           />
                           @endif
                       </div>
@@ -40,7 +40,7 @@
                             class="profile"
                             name='profile' multiple
                             hidden
-                            accept="image/png, image/jpeg" required
+                            accept="image/png, image/jpeg" 
                           />
                         </label>
                         <div class="invalid-feedback">

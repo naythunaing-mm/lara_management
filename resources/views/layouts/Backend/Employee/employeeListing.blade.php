@@ -6,7 +6,7 @@
         <div class="card">
         <h5 class="card-header">Employee Listing</h5>
         <div class="table-responsive text-nowrap">
-            <table class="table table-hover" id="yourDataTable">
+            <table class="table table-hover" id="yourDataTable" style="width:100%;">
             <thead>
                 <tr>
                 <th>ID</th>
@@ -43,15 +43,4 @@
         </div>
     </div>
     <!--/ Hoverable Table rows -->
-      @if (session('success_msg'))
-    <script>
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your work has been saved",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    </script>
-    @endif
 @endsection
