@@ -53,12 +53,15 @@
                                     <div class="row px-3">
                                         @foreach ($permissions as $permission)
                                         <div class="col-sm-6 col-md-4 form-check">
+                                            @php
+                                                $isChecked = isset($oldPermissions) && $oldPermissions->contains($permission->id);
+                                            @endphp
                                             <input class="form-check-input" 
                                                    type="checkbox" 
                                                    id="permission_{{ $permission->id }}" 
                                                    name="permission[]" 
                                                    value="{{ $permission->name }}" 
-                                                   {{ in_array($permission->name, $$oldPermissions) ? 'checked' : '' }}
+                                                   {{ $isChecked ? 'checked' : '' }}
                                             />
                                             <label class="form-check-label" for="permission_{{ $permission->id }}">
                                                 {{ $permission->name }}
@@ -66,6 +69,8 @@
                                         </div>
                                     @endforeach
                                     
+
+                                  
                                     </div>
                                 </div>                                       
 
