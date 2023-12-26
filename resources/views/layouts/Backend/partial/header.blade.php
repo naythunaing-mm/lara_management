@@ -203,11 +203,49 @@
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="{{ route('departmentForm') }}" class="menu-link" />
-                    <div data-i18n="Basic">Role</div>
+                    <div data-i18n="Basic">Department</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="{{ route('departmentListing') }}" class="menu-link" />
+                    <div data-i18n="Basic">Listing</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Authentications">Role</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('roleForm') }}" class="menu-link" />
+                    <div data-i18n="Basic">Role</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{ route('roleListing') }}" class="menu-link" />
+                    <div data-i18n="Basic">Listing</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Authentications">Permission</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{ route('permissionForm') }}" class="menu-link" />
+                    <div data-i18n="Basic">Permission</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{ route('permissionListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>

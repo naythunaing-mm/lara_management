@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Department\departmentController;
 use App\Http\Controllers\Employee\employeeController;
 use App\Http\Controllers\Home\indexContoller;
+use App\Http\Controllers\Permission\permissionController;
+use App\Http\Controllers\Role\roleController;
 use App\Http\Controllers\Setting\settingController;
 use App\Http\Controllers\View\viewController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +59,26 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::get('departmentListing', [departmentController::class,'departmentListing'])->name('departmentListing');
         Route::post('departmentUpdate', [departmentController::class,'departmentUpdate'])->name('departmentUpdate');
         Route::post('departmentStore', [departmentController::class,'departmentStore'])->name('departmentStore');
+    });
+
+       // Role Route
+    Route::prefix('role')->group(function () {
+        Route::get('form', [roleController::class,'roleForm'])->name('roleForm');
+        Route::get('edit/{id}', [roleController::class,'editForm']);
+        Route::get('delete/{id}', [roleController::class, 'roleDelete']);
+        Route::get('roleListing', [roleController::class,'roleListing'])->name('roleListing');
+        Route::post('roleUpdate', [roleController::class,'roleUpdate'])->name('roleUpdate');
+        Route::post('roleStore', [roleController::class,'roleStore'])->name('roleStore');
+    });
+
+    // Permission Route 
+    Route::prefix('permission')->group(function () {
+        Route::get('form', [permissionController::class,'permissionForm'])->name('permissionForm');
+        Route::get('edit/{id}', [permissionController::class,'editForm']);
+        Route::get('delete/{id}', [permissionController::class, 'permissionDelete']);
+        Route::get('permissionListing', [permissionController::class,'permissionListing'])->name('permissionListing');
+        Route::post('permissionUpdate', [permissionController::class,'permissionUpdate'])->name('permissionUpdate');
+        Route::post('permissionStore', [permissionController::class,'permissionStore'])->name('permissionStore');
     });
 
     // Setting Route
