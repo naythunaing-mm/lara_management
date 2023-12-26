@@ -1,10 +1,10 @@
 @extends('layouts.Backend.master')
-@section('title','role Listing')
+@section('title','Role Listing')
 @section('content')
     <!-- Hoverable Table rows -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
-        <h5 class="card-header">roles Listing</h5>
+        <h5 class="card-header">Roles Listing</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-hover" id="yourDataTable">
             <thead>

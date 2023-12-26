@@ -48,6 +48,9 @@ class RoleRepository implements RoleRepositoryInterface
             $paraObj                     = Role::find($id);
             $paraObj->name               = $paraData['name'];
             $paraObj->save();
+            $oldPermissions              = $paraObj->permissions()->pluck('name')->toArray();
+            $paraObj->revokePermissionTo($oldPermissions);
+            $paraObj->givePermissionTo($paraData['permission']);
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch(\Exception $e) {

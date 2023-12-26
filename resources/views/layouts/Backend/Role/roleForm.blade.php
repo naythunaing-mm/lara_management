@@ -5,7 +5,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y authentication-wrapper authentication-basic">
         <h4 class="fw-bold py-3 mb-4">
-            <span class="text-muted fw-light">role Form/</span>
+            <span class="text-muted fw-light">Role Form/</span>
             @if(isset($roles))
             <span>Edit</span>
             @else
@@ -52,25 +52,23 @@
                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Permission</label>
                                     <div class="row px-3">
                                         @foreach ($permissions as $permission)
-                                        <div class="col-sm-6 col-md-4 form-check">
-                                            @php
-                                                $isChecked = isset($oldPermissions) && $oldPermissions->contains($permission->id);
-                                            @endphp
-                                            <input class="form-check-input" 
-                                                   type="checkbox" 
-                                                   id="permission_{{ $permission->id }}" 
-                                                   name="permission[]" 
-                                                   value="{{ $permission->name }}" 
-                                                   {{ $isChecked ? 'checked' : '' }}
-                                            />
-                                            <label class="form-check-label" for="permission_{{ $permission->id }}">
-                                                {{ $permission->name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                    
+                                            <div class="col-sm-6 col-md-4 form-check">
+                                                @php
+                                                    $isChecked = isset($oldPermissions) && $oldPermissions->contains($permission->id);
+                                                @endphp
+                                                <input class="form-check-input" 
+                                                    type="checkbox" 
+                                                    id="permission_{{ $permission->id }}" 
+                                                    name="permission[]" 
+                                                    value="{{ $permission->name }}" 
+                                                    {{ $isChecked ? 'checked' : '' }}
+                                                />
+                                                <label class="form-check-label" for="permission_{{ $permission->id }}">
+                                                    {{ $permission->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
 
-                                  
                                     </div>
                                 </div>                                       
 

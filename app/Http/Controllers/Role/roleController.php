@@ -16,8 +16,8 @@ class roleController extends Controller
     protected $permissionRepository;
     public function __construct(
         RoleRepositoryInterface $roleRepository,
-        PermissionRepositoryInterface $permissionRepository)
-    {
+        PermissionRepositoryInterface $permissionRepository
+    ) {
         DB::connection()->enableQueryLog();
         $this->roleRepository = $roleRepository;
         $this->permissionRepository = $permissionRepository;
