@@ -10,24 +10,30 @@ use App\Http\Requests\Employee\employeeRequest;
 use App\Repository\Department\DepartmentRepositoryInterface;
 use App\Repository\Employee\EmployeeRepository;
 use App\Repository\Employee\EmployeeRepositoryInterface;
+use App\Repository\Role\RoleRepository;
+use App\Repository\Role\RoleRepositoryInterface;
 use PhpParser\Node\Stmt\Return_;
 
 class employeeController extends Controller
 {
     private $employeeRepository;
     private $departmentRepository;
+    private $roleRepository;
     public function __construct(
         EmployeeRepositoryInterface $employeeRepository,
-        DepartmentRepositoryInterface $departmentRepository
+        DepartmentRepositoryInterface $departmentRepository,
+        RoleRepositoryInterface $roleRepository,
     ) {
         DB::connection()->enableQueryLog();
-        $this->employeeRepository = $employeeRepository;
+        $this->employeeRepository   = $employeeRepository;
         $this->departmentRepository = $departmentRepository;
+        $this->roleRepository       = $roleRepository;
     }
     public function employeeForm()
     {
         $departments = $this->departmentRepository->getDepartments();
-        return view('layouts.Backend.Employee.employeeForm', compact(['departments']));
+        $roles       = $this->roleRepository->getRoles();
+        return view('layouts.Backend.Employee.employeeForm', compact(['departments','roles']));
     }
 
     public function employeeStore(employeeRequest $request)

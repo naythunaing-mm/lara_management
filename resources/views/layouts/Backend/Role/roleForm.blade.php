@@ -17,7 +17,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             @if(isset($roles))
-                                <form action="{{ route('roleUpdate') }}" method="POST" class="needs-validation" id="formAuthentication" novalidate>
+                                <form action="{{ route('roleUpdate') }}" method="POST" class="needs-validation" id="formAuthentication"  novalidate>
                             @else
                                 <form action="{{ route('roleStore') }}" method="POST" class="needs-validation" id="formAuthentication" novalidate>
                             @endif
@@ -90,4 +90,13 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
+    <script>
+    document.getElementById('formAuthentication').addEventListener('submit', function(event) {
+        var checkboxes = document.querySelectorAll('input[name="permission[]"]:checked');
+        if (checkboxes.length === 0) {
+            alert('Please select at least one permission.');
+            event.preventDefault(); // Prevent the form from submitting
+        }
+    });
+</script>
 @endsection

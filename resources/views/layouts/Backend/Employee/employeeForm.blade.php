@@ -177,6 +177,24 @@
                       </div>
 
                       <div class="mb-3 col-md-6">
+                        <label for="role_id" class="form-label">Role</label>
+                        <select id="role_id" class="select2 form-select" name="role_id[]" required multiple>
+                          <option value="">Choose Role</option>
+                          @if(isset($roles))
+                            @foreach($roles as $role)
+                              <option value="{{$role->id}}" >{{$role->name}}</option>
+                            @endforeach
+                          @endif
+                        </select>
+                        <div class="invalid-feedback">
+                          @if ($errors->has('role_id'))
+                          <p style="color:red">Please valid Role</p>
+                          @endif
+                          Invalid Role-ID
+                        </div>
+                      </div>
+
+                      <div class="mb-3 col-md-6">
                         <label for="gender" class="form-label">Gender</label>
                         <select id="gender" class="select2 form-select" name="gender" required>
                           <option value="">Select Gender</option>

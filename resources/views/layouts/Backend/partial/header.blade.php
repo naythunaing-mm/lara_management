@@ -21,7 +21,6 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-
     <script src="{{ URL::asset('admin-backend/js/sweetalert2@11.js') }}"></script>
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/vendor/fonts/boxicons.css') }}" />
