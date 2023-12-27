@@ -71,9 +71,10 @@ class employeeController extends Controller
     public function editForm($id)
     {
         try {
-            $employee = $this->employeeRepository->employeeEdit($id);
+            $employee    = $this->employeeRepository->employeeEdit($id);
+            $roles       = $this->roleRepository->getRoles();
             $departments = $this->departmentRepository->getDepartments();
-            return view('layouts.Backend.Employee.employeeForm', compact(['employee','departments']));
+            return view('layouts.Backend.Employee.employeeForm', compact(['employee','departments','roles']));
         } catch (\Exception $e) {
             abort(500);
         }

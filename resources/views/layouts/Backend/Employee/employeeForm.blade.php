@@ -178,15 +178,15 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="role_id" class="form-label">Role</label>
-                        <select id="role_id" class="select form-select" name="role_id[]" multiple="multiple" required>
+                        <select id="role_id" class="select form-select" name="roles[]" multiple="multiple" required>
                           @if(isset($roles))
                             @foreach($roles as $role)
-                              <option value="{{$role->id}}" >{{$role->name}}</option>
+                              <option value="{{$role->name}}" >{{$role->name}}</option>
                             @endforeach
                           @endif
                         </select>
                         <div class="invalid-feedback">
-                          @if ($errors->has('role_id'))
+                          @if ($errors->has('roles'))
                           <p style="color:red">Please valid Role</p>
                           @endif
                           Invalid Role
