@@ -19,7 +19,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             if(isset($paraData['profile'])) {
                 // Corrected the array access for the profile file
                 $profile_file = $paraData['profile'];
-                $profile_name = uniqid().'_'.time().'.'.$profile_file->getClientOriginalExtension();
+                $profile_name = uniqid() . '_' . time() . '.' . $profile_file->getClientOriginalExtension();
                 // Used store method to save the file
                 $profile_file->storeAs('employee', $profile_name, 'public');
             }
@@ -39,6 +39,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj->status        = $paraData['status'];
             $tempObj                = Utility::addCreated($paraObj);
             $tempObj->save();
+            $paraObj->syncRoles($paraData['role_id']);
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
         } catch(\Exception $e) {
@@ -46,7 +47,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             return $returnObj;
         }
     }
-    
+
 
     public function employeeListing()
     {
@@ -73,9 +74,9 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
             $profile_name = $paraObj->profile;
             if(isset($paraData['profile'])) {
-                Storage::disk('public')->delete('employee/'.$paraObj->profile);
+                Storage::disk('public')->delete('employee/' . $paraObj->profile);
                 $profile_file = $paraData['profile'];
-                $profile_name = uniqid().'_'.time().'.'.$profile_file->getClientOriginalExtension();
+                $profile_name = uniqid() . '_' . time() . '.' . $profile_file->getClientOriginalExtension();
                 $profile_file->storeAs('employee', $profile_name, 'public');
             }
             $paraObj->profile       = $profile_name;

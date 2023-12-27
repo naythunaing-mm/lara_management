@@ -160,8 +160,8 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="department_id" class="form-label">Department</label>
-                        <select id="department_id" class="select2 form-select" name="department_id" required>
-                          <option value="">Choose Department</option>
+                        <select id="department_id" class="form-select" name="department_id" required>
+                        <option value="">Choose Department</option>
                           @if(isset($departments))
                             @foreach($departments as $department)
                               <option value="{{$department->id}}" {{ old('department_id', isset($employee) ? $employee->department_id : null) == $department->id ? 'selected' : '' }}>{{$department->department}}</option>
@@ -178,8 +178,7 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="role_id" class="form-label">Role</label>
-                        <select id="role_id" class="select2 form-select" name="role_id[]" required multiple>
-                          <option value="">Choose Role</option>
+                        <select id="role_id" class="select form-select" name="role_id[]" multiple="multiple" required>
                           @if(isset($roles))
                             @foreach($roles as $role)
                               <option value="{{$role->id}}" >{{$role->name}}</option>
@@ -190,14 +189,14 @@
                           @if ($errors->has('role_id'))
                           <p style="color:red">Please valid Role</p>
                           @endif
-                          Invalid Role-ID
+                          Invalid Role
                         </div>
                       </div>
 
                       <div class="mb-3 col-md-6">
                         <label for="gender" class="form-label">Gender</label>
-                        <select id="gender" class="select2 form-select" name="gender" required>
-                          <option value="">Select Gender</option>
+                        <select id="gender" class="form-select" name="gender" required>
+                          <option value="">Choose Gender</option>
                           <option value="0" {{old('gender', isset($employee) && $employee->gender == 0 ? 'selected' : '')}}>Male</option>
                           <option value="1" {{old('gender', isset($employee) && $employee->gender == 1 ? 'selected' : '')}}>Female</option>
                         </select>
@@ -211,8 +210,8 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="status" class="form-label">Status</label>
-                        <select id="status" class="select2 form-select" name="status" required>
-                          <option value="">Select Status</option>
+                        <select id="status" class="form-select" name="status" required>
+                          <option value="">Choose Status</option>
                           <option value="0" {{ old('status', isset($employee) && $employee->status == 0 ? 'selected' : '') }}>Leave</option>
                           <option value="1" {{ old('status', isset($employee) && $employee->status == 1 ? 'selected' : '') }}>Present</option>
                         </select>
