@@ -9,31 +9,28 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <h5 class="card-header">{{ (isset($employee)? $employee->name : '') }}</h5> 
+                <h5 class="card-header"></h5> 
                  <!-- Account -->
                  <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-center gap-4">
+                    <div class=" gap-4">
                       @if(isset($employee))
                           <img
                           src="{{$employee->profilePath()}}"
                           alt="user-avatar"
-                          class="d-block rounded"
-                          height="130"
-                          width="130"
+                          class="d-block rounded-circle border border-info p-1"
+                          height="140"
+                          width="140"
                           id="uploadedAvatar"
                           name="file" required 
                           />
+                      @endif
+                      <h3 class="mt-2">{{ (isset($employee)? $employee->name : '') }}</h3>
+                      <span class="badge rounded-pill bg-primary">{{ (isset($employee)? $employee->employee_id : '') }}</span>
+                      <span class="badge rounded-pill bg-primary">
+                          @if(optional($employee->getDepartment)->department != null)
+                              {{ $employee->getDepartment->department }}
                           @endif
-                      <div class="button-wrapper">
-                          <input
-                            type="file"
-                            id="upload"
-                            class="account-file-input"
-                            hidden
-                            accept="image/png, image/jpeg"
-                          />
-                        </label>
-                      </div>
+                        </span>
                     </div>
                   </div>
                   <hr class="my-0" />

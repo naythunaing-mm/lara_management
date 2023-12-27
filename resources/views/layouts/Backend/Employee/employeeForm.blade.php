@@ -177,20 +177,23 @@
                       </div>
 
                       <div class="mb-3 col-md-6">
-                        <label for="role_id" class="form-label">Role</label>
-                        <select id="role_id" class="select form-select" name="roles[]" multiple="multiple" required>
-                          @if(isset($roles))
-                            @foreach($roles as $role)
-                              <option value="{{$role->name}}" >{{$role->name}}</option>
-                            @endforeach
-                          @endif
-                        </select>
-                        <div class="invalid-feedback">
-                          @if ($errors->has('roles'))
-                          <p style="color:red">Please valid Role</p>
-                          @endif
-                          Invalid Role
-                        </div>
+                          <label for="role_id" class="form-label">Role</label>
+                          <select id="role_id" class="select form-select" name="roles[]" multiple="multiple" required>
+                              @if(isset($roles))
+                                  @foreach($roles as $role)
+                                      @php
+                                          $isChecked = isset($oldRoles) && in_array($role->id, $oldRoles->toArray());
+                                      @endphp
+                                      <option value="{{$role->name}}" {{ $isChecked ? 'selected' : '' }}>{{$role->name}}</option>
+                                  @endforeach
+                              @endif
+                          </select>
+                          <div class="invalid-feedback">
+                              @if ($errors->has('roles'))
+                                  <p style="color:red">Please select a valid role</p>
+                              @endif
+                              Invalid Role
+                          </div>
                       </div>
 
                       <div class="mb-3 col-md-6">

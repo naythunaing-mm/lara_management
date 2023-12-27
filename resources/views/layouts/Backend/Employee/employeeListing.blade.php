@@ -12,6 +12,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Department</th>
                 <th>NRC</th>
                 <th>Actions</th>
@@ -24,8 +25,13 @@
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->email }}</td>
                         <td>
+                            @foreach ($employee->roles as $role)
+                            <span class="badge rounded-pill bg-primary">{{ $role->name }}</span>
+                            @endforeach
+                        </td>  
+                        <td>
                             @if(optional($employee->getDepartment)->department != null)
-                                {{ $employee->getDepartment->department }}
+                            <span class="badge rounded-pill bg-primary">{{ $employee->getDepartment->department }}</span>
                             @endif
                         </td>
                         <td>{{ $employee->nrc_number }}</td>

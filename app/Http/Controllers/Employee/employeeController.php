@@ -74,7 +74,8 @@ class employeeController extends Controller
             $employee    = $this->employeeRepository->employeeEdit($id);
             $roles       = $this->roleRepository->getRoles();
             $departments = $this->departmentRepository->getDepartments();
-            return view('layouts.Backend.Employee.employeeForm', compact(['employee','departments','roles']));
+            $oldRoles    = $employee->roles->pluck('id');
+            return view('layouts.Backend.Employee.employeeForm', compact(['employee','departments','roles','oldRoles']));
         } catch (\Exception $e) {
             abort(500);
         }

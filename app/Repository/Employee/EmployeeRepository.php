@@ -93,6 +93,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj->date_of_join  = $paraData['date_of_join'];
             $paraObj->status        = $paraData['status'];
             $tempObj                = Utility::addUpdated($paraObj);
+            $paraObj->syncRoles($paraData['roles']);
             $tempObj->save();
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return  $returnObj;
