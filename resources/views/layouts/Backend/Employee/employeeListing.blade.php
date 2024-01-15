@@ -5,8 +5,8 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
         <h5 class="card-header">Employee Listing</h5>
-        <div class="table-responsive text-nowrap">
-            <table class="table table-hover" id="yourDataTable" style="width:100%;">
+        <div class="table-responsive text-nowrap p-5">
+            <table class="table table-hover" id="DataTable" style="width:100%;">
             <thead>
                 <tr>
                 <th>ID</th>
@@ -19,34 +19,30 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach ($employees as $employee)
-                    <tr>
-                        <td>{{ $employee->employee_id }}</td>
-                        <td>{{ $employee->name }}</td>
-                        <td>{{ $employee->email }}</td>
-                        <td>
-                            @foreach ($employee->roles as $role)
-                            <span class="badge rounded-pill bg-primary">{{ $role->name }}</span>
-                            @endforeach
-                        </td>  
-                        <td>
-                            @if(optional($employee->getDepartment)->department != null)
-                            <span class="badge rounded-pill bg-primary">{{ $employee->getDepartment->department }}</span>
-                            @endif
-                        </td>
-                        <td>{{ $employee->nrc_number }}</td>
-                        <td>
-                            <a class="" href="{{ URL::to('admin-backend/employee/edit') }}/{{ $employee->id }}"><i class="bx bx-edit-alt me-1"></i> </a> |
-                            <a class="" href="{{ URL::to('admin-backend/employee/delete') }}/{{ $employee->id }}"><i class="bx bx-trash me-1"></i> </a> |
-                            <a class="" href="{{ URL::to('admin-backend/employee/detail') }}/{{ $employee->id }}"><i class="menu-icon tf-icons bx bx-copy"></i> </a>
-                        </td>
-                    </tr>
-                @endforeach
+                
             </tbody>
             </table>
-            {{  $employees->links() }}
         </div>
         </div>
     </div>
     <!--/ Hoverable Table rows -->
+@endsection
+@section('script')
+<script>
+        $(document).ready(function () {
+            $('#DataTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '/admin-backend/employee/employee/employeeDataTable',
+                columns: [
+                    {"data": "id"},
+                    {"data": "name"},
+                    {"data": "email"},
+                    {"data": "role"},
+                    {"data": "department"},
+                    {"data": "nrc"},
+                ]
+            });
+        });
+    </script>
 @endsection

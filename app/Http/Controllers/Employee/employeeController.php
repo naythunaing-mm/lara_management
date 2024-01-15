@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Utility;
+use App\Models\User;
 use App\ReturnMessages;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ use App\Repository\Employee\EmployeeRepositoryInterface;
 use App\Repository\Role\RoleRepository;
 use App\Repository\Role\RoleRepositoryInterface;
 use PhpParser\Node\Stmt\Return_;
+use Yajra\DataTables\DataTables;
 
 class employeeController extends Controller
 {
@@ -57,13 +59,18 @@ class employeeController extends Controller
     public function employeeListing()
     {
         try {
-            $employees = $this->employeeRepository->employeeListing();
-            $logs      = "Employee Listing Screen :: ";
-            Utility::saveLog($logs);
-            return view('layouts.Backend.Employee.employeeListing', compact(['employees']));
+            return view('layouts.Backend.Employee.employeeListing');
         } catch(\Exception $e) {
-            $logs = "Employee Listing Error ::";
-            $logs = $e->getMessage();
+            abort(500);
+        }
+    }
+
+
+    public function employeeDataTable()
+    {
+        try {
+            return DataTables::of(User::get())->make(true);
+        } catch(\Exception $e) {
             abort(500);
         }
     }

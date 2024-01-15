@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::get('form', [employeeController::class,'employeeForm'])->name('employeeForm');
         Route::get('edit/{id}', [employeeController::class,'editForm']);
         Route::get('employeeListing', [employeeController::class,'employeeListing'])->name('employeeListing');
+        Route::get('employee/employeeDataTable', [employeeController::class,'employeeDataTable'])->name('employeeDataTable');
         Route::get('detail/{id}', [employeeController::class, 'employeeDetail'])->name('employeeDetail');
         Route::get('delete/{id}', [employeeController::class, 'employeeDelete'])->name('employeeDelete');
         Route::post('employeeUpdate', [employeeController::class,'employeeUpdate'])->name('employeeUpdate');

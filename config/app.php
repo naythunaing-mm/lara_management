@@ -157,6 +157,7 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         Spatie\Permission\PermissionServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Package Service Providers...
          */
