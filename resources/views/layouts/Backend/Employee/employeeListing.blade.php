@@ -12,9 +12,9 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Role</th>
                 <th>Department</th>
                 <th>NRC</th>
+                <th>Status</th>
                 <th>Actions</th>
                 </tr>
             </thead>
@@ -38,9 +38,10 @@
                     {"data": "id"},
                     {"data": "name"},
                     {"data": "email"},
-                    {"data": "role"},
                     {"data": "department"},
-                    {"data": "nrc"},
+                    {"data": "nrc_number"},
+                    {"data": "status"},
+                    
                 ]
             });
         });
