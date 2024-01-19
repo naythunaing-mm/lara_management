@@ -48,6 +48,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // public function getRole() {
+    //     return $this->belongsTo(Role::class, 'ro')
+    // }
     public function getDepartment()
     {
         return $this->belongsTo(Department::class, 'department_id', 'id');

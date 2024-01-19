@@ -10,4 +10,5 @@ interface EmployeeRepositoryInterface
     public function getUpdate($paraData);
     public function getDelete($id);
     public function employeeDetail($id);
+    public function employeeDataTable();
 }

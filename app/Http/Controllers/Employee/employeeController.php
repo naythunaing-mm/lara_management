@@ -14,8 +14,6 @@ use App\Repository\Employee\EmployeeRepositoryInterface;
 use App\Repository\Role\RoleRepository;
 use App\Repository\Role\RoleRepositoryInterface;
 use PhpParser\Node\Stmt\Return_;
-use Yajra\DataTables\DataTables;
-use Illuminate\Support\HtmlString;
 
 class employeeController extends Controller
 {
@@ -70,16 +68,12 @@ class employeeController extends Controller
     public function employeeDataTable()
     {
         try {
-            $employee = User::with('getDepartment');
-            return DataTables::of($employee)->addColumn('department', function ($each) {
-                return $each->getDepartment ? $each->getDepartment->department : '-';
-            })->editColumn('status', function ($each) {
-                if ($each->status == 1) {
-                    return new HtmlString('<span class="badge rounded-pill bg-primary">Present</span>');
-                } else {
-                    return new HtmlString('<span class="badge rounded-pill bg-danger">Absent</span>');
-                }
-            })->make(true);
+            $employees = $this->employeeRepository->employeeDataTable();
+            if( $employees) {
+                return $employees;
+            } else {
+                return abort(500);
+            }
         } catch (\Exception $e) {
             abort(500);
         }

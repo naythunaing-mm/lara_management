@@ -15,6 +15,7 @@
                 <th>Department</th>
                 <th>NRC</th>
                 <th>Status</th>
+                <th>Updated_at</th>
                 <th>Actions</th>
                 </tr>
             </thead>
@@ -38,9 +39,10 @@
                     {"data": "id"},
                     {"data": "name"},
                     {"data": "email"},
-                    {"data": "department"},
+                    {"data": "department", class: 'text-center'},
                     {"data": "nrc_number"},
                     {"data": "status"},
+                    {"data": "updated_at"}
                     
                 ]
             });

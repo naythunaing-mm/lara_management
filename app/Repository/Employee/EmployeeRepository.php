@@ -4,8 +4,11 @@ namespace App\Repository\Employee;
 
 use App\Utility;
 use App\Constant;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\HtmlString;
 use App\Models\User;
 use App\ReturnMessages;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
@@ -48,6 +51,27 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         }
     }
 
+    public function employeeDataTable()
+    {
+        $employee = User::with('getDepartment');
+        return DataTables::of($employee)
+        // ->addColumn('role', function($each) {
+        //     return $each->
+        // })
+        ->addColumn('department', function ($each) {
+            return $each->getDepartment ? $each->getDepartment->department : '-';
+        })
+        ->editColumn('updated_at', function ($each) {
+            return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
+        })
+        ->editColumn('status', function ($each) {
+            if ($each->status == 1) {
+                return new HtmlString('<span class="badge rounded-pill bg-primary">Present</span>');
+            } else {
+                return new HtmlString('<span class="badge rounded-pill bg-danger">Absent</span>');
+            }
+        })->make(true);
+    }
 
     // public function employeeListing()
     // {
