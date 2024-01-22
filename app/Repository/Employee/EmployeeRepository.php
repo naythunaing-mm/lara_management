@@ -55,22 +55,32 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     {
         $employee = User::with('getDepartment');
         return DataTables::of($employee)
-        // ->addColumn('role', function($each) {
-        //     return $each->
-        // })
+        ->addColumn('profile', function ($each) {
+            return '<img src="' . $each->profilePath() . '" width="80px" height="80px" style="border-radius:10px">'
+                . '<p class="mb-0 p-1 text-center">' . $each->name . '</p>';
+        })
         ->addColumn('department', function ($each) {
             return $each->getDepartment ? $each->getDepartment->department : '-';
         })
+        ->addColumn('actions', function ($each) {
+            $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><i class="bx bx-edit-alt me-1"></i></a>';
+            $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><i class="bx bx-trash me-1"></i></a>';
+            $action_detail = '<a href="' . route('employeeDetail', $each->id) . '"><i class="menu-icon tf-icons bx bx-copy"></i></a>';
+            return $action_edit . " | " . $action_delete . " | " . $action_detail;
+        })
+
         ->editColumn('updated_at', function ($each) {
             return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
         })
         ->editColumn('status', function ($each) {
             if ($each->status == 1) {
-                return new HtmlString('<span class="badge rounded-pill bg-primary">Present</span>');
+                return '<span class="badge rounded-pill bg-primary">Present</span>';
             } else {
-                return new HtmlString('<span class="badge rounded-pill bg-danger">Absent</span>');
+                return '<span class="badge rounded-pill bg-danger">Absent</span>';
             }
-        })->make(true);
+        })
+        ->rawColumns(['status','actions','profile'])
+        ->make(true);
     }
 
     // public function employeeListing()

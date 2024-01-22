@@ -36,7 +36,7 @@
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
             <div class="d-flex justify-content-center">
-                <img class="img-fluid" src="{{URL::asset('admin-backend/assets/img/icons') }}/{{ getSiteSetting() !== null ? getSiteSetting()->logo : ''  }}" alt="" style="width:100px;height:100px;">
+                <img class="img-fluid" src="{{URL::asset('admin-backend/assets/img/icons') }}/{{ getSiteSetting() !== null ? getSiteSetting()->logo : ''  }}" alt="" style="width:130px;height:130px;">
             </div>
           <!-- Register -->
           <div class="card">

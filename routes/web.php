@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     // Employee Route
     Route::prefix('employee')->group(function () {
         Route::get('form', [employeeController::class,'employeeForm'])->name('employeeForm');
-        Route::get('edit/{id}', [employeeController::class,'editForm']);
+        Route::get('edit/{id}', [employeeController::class,'editForm'])->name('employeeEdit');
         Route::get('employeeListing', [employeeController::class,'employeeListing'])->name('employeeListing');
         Route::get('employee/employeeDataTable', [employeeController::class,'employeeDataTable'])->name('employeeDataTable');
         Route::get('detail/{id}', [employeeController::class, 'employeeDetail'])->name('employeeDetail');
@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::post('departmentStore', [departmentController::class,'departmentStore'])->name('departmentStore');
     });
 
-       // Role Route
+    // Role Route
     Route::prefix('role')->group(function () {
         Route::get('form', [roleController::class,'roleForm'])->name('roleForm');
         Route::get('edit/{id}', [roleController::class,'editForm']);
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::post('roleStore', [roleController::class,'roleStore'])->name('roleStore');
     });
 
-    // Permission Route 
+    // Permission Route
     Route::prefix('permission')->group(function () {
         Route::get('form', [permissionController::class,'permissionForm'])->name('permissionForm');
         Route::get('edit/{id}', [permissionController::class,'editForm']);

@@ -162,12 +162,13 @@
                     visible: false,
                 },
             ],
+
             // language: {
-            //     "paginate": {
-            //         'previous': '<i class="fa-regular fa-circle-left"></i>',
-            //         'next': '<i class="fa-regular fa-circle-right"></i>',
-            //     },
-            //     // "processing": `<img src="{{ asset('image/loading.gif') }}" style="width:70px">`
+            //     // "paginate": {
+            //     //     'previous': '<i class="fa-regular fa-circle-left"></i>',
+            //     //     'next': '<i class="fa-regular fa-circle-right"></i>',
+            //     // },
+            //     "processing": `<img src="{{ asset('/image/loading.gif') }}" style="width:50px">`
 
             // },
         });
