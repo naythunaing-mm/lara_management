@@ -52,7 +52,7 @@
                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Permission</label>
                                     <div class="row px-3">
                                         @foreach ($permissions as $permission)
-                                            <div class="col-sm-6 col-md-4 form-check">
+                                            <div class="col-sm-6 col-md-6 form-check">
                                                 @php
                                                     $isChecked = isset($oldPermissions) && $oldPermissions->contains($permission->id);
                                                 @endphp

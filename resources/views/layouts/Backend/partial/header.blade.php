@@ -181,11 +181,13 @@
                     <div data-i18n="Account">Create Account</div>
                   </a>
                 </li>
+               
                 <li class="menu-item">
                   <a href="{{ route('employeeListing') }}" class="menu-link">
                     <div data-i18n="Notifications">Employee</div>
                   </a>
                 </li>
+             
               </ul>
             </li>
             <li class="menu-item">

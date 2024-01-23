@@ -9,7 +9,7 @@
             <table class="table table-hover" id="DataTable" style="width:100%;">
             <thead>
                 <tr>
-                <th>Image</th>
+                <th></th>
                 <th>ID</th>
                 <th>Email</th>
                 <th>Department</th>
@@ -37,7 +37,7 @@
                 ajax: '/admin-backend/employee/employee/employeeDataTable',
                 columns: [
                     {"data" : "profile",class: ''},
-                    {"data": "id"},
+                    {"data": "employee_id"},
                     {"data": "email"},
                     {"data": "department", class: 'text-center'},
                     {"data": "nrc_number"},
@@ -45,7 +45,8 @@
                     {"data": "updated_at"},
                     {"data" : "actions"}
                     
-                ]
+                ],
+               
             });
         });
     </script>

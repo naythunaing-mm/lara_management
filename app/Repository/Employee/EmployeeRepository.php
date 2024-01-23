@@ -56,8 +56,8 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $employee = User::with('getDepartment');
         return DataTables::of($employee)
         ->addColumn('profile', function ($each) {
-            return '<img src="' . $each->profilePath() . '" width="80px" height="80px" style="border-radius:10px">'
-                . '<p class="mb-0 p-1 text-center">' . $each->name . '</p>';
+            return '<div class="text-center p-2"><img src="' . $each->profilePath() . '" width="80px" height="80px" style="border-radius:10px;" class="border">'
+                . '<p class="mb-0 p-1 text-mute">' . $each->name . '</p></div>';
         })
         ->addColumn('department', function ($each) {
             return $each->getDepartment ? $each->getDepartment->department : '-';
