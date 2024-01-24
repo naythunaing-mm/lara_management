@@ -170,26 +170,34 @@
               <span class="menu-header-text">Settings</span>
             </li>
 
+            @if( Auth::guard('Admin')->user()->can('employee'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Account Settings</div>
+                <div data-i18n="Account Settings">Employee</div>
               </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="{{ route('employeeForm') }}" class="menu-link">
-                    <div data-i18n="Account">Create Account</div>
-                  </a>
-                </li>
-               
-                <li class="menu-item">
-                  <a href="{{ route('employeeListing') }}" class="menu-link">
-                    <div data-i18n="Notifications">Employee</div>
-                  </a>
-                </li>
              
+              <ul class="menu-sub">
+                @if( Auth::guard('Admin')->user()->can('employee_create'))
+                  <li class="menu-item">
+                    <a href="{{ route('employeeForm') }}" class="menu-link">
+                      <div data-i18n="Account">Create Account</div>
+                    </a>
+                  </li>
+                @endif
+                @if( Auth::guard('Admin')->user()->can('employeeList_view'))
+                  <li class="menu-item">
+                    <a href="{{ route('employeeListing') }}" class="menu-link">
+                      <div data-i18n="Notifications">Employee</div>
+                    </a>
+                  </li>
+                @endif
               </ul>
             </li>
+            @endif
+
+
+            @if( Auth::guard('Admin')->user()->can('hotelSetting'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -203,25 +211,32 @@
                 </li>
               </ul>
             </li>
+            @endif
 
+            @if( Auth::guard('Admin')->user()->can('department'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Authentications">Department</div>
               </a>
               <ul class="menu-sub">
+              @if( Auth::guard('Admin')->user()->can('department_create'))
                 <li class="menu-item">
                   <a href="{{ route('departmentForm') }}" class="menu-link" />
                     <div data-i18n="Basic">Department</div>
                   </a>
                 </li>
+              @endif
+              @if( Auth::guard('Admin')->user()->can('departmentListing_view'))
                 <li class="menu-item">
                   <a href="{{ route('departmentListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>
               </ul>
+              @endif
             </li>
+            @endif
 
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -229,16 +244,20 @@
                 <div data-i18n="Authentications">Role</div>
               </a>
               <ul class="menu-sub">
+              @if( Auth::guard('Admin')->user()->can('role_create'))
                 <li class="menu-item">
                   <a href="{{ route('roleForm') }}" class="menu-link" />
                     <div data-i18n="Basic">Role</div>
                   </a>
                 </li>
+              @endif
+              @if( Auth::guard('Admin')->user()->can('roleListing_view'))
                 <li class="menu-item">
                   <a href="{{ route('roleListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>
+              @endif
               </ul>
             </li>
 
@@ -580,13 +599,13 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ URL::to('admin-backend/employee/edit') }}/{{ Auth::guard('Admin')->user()->id }}">
+                      <a class="dropdown-item" href="{{ URL::to('admin-backend/employee/detail') }}/{{ Auth::guard('Admin')->user()->id }}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ URL::to('admin-backend/employee/edit') }}/{{ Auth::guard('Admin')->user()->id }}">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
                       </a>

@@ -32,7 +32,7 @@
                                                 name  = "name"
                                                 value = "{{ (isset($permissions)) ? $permissions->name : '' }}"
                                                 id = "basic-icon-default-fullname"
-                                                placeholder="General Manager"
+                                                placeholder="Ex. View Employee"
                                                 aria-label="General Manager"
                                                 aria-describedby="permission"
                                                 required

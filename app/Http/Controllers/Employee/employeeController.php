@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Employee;
 use App\Utility;
 use App\Models\User;
 use App\ReturnMessages;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Employee\employeeRequest;
-use App\Repository\Department\DepartmentRepositoryInterface;
-use App\Repository\Employee\EmployeeRepository;
-use App\Repository\Employee\EmployeeRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use App\Repository\Role\RoleRepository;
+use App\Http\Requests\Employee\employeeRequest;
+use App\Repository\Employee\EmployeeRepository;
 use App\Repository\Role\RoleRepositoryInterface;
-use PhpParser\Node\Stmt\Return_;
+use App\Repository\Employee\EmployeeRepositoryInterface;
+use App\Repository\Department\DepartmentRepositoryInterface;
 
 class employeeController extends Controller
 {
@@ -69,7 +70,7 @@ class employeeController extends Controller
     {
         try {
             $employees = $this->employeeRepository->employeeDataTable();
-            if( $employees) {
+            if($employees) {
                 return $employees;
             } else {
                 return abort(500);

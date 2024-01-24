@@ -4,11 +4,12 @@ namespace App\Repository\Employee;
 
 use App\Utility;
 use App\Constant;
-use Yajra\DataTables\DataTables;
-use Illuminate\Support\HtmlString;
+use Carbon\Carbon;
 use App\Models\User;
 use App\ReturnMessages;
-use Carbon\Carbon;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
@@ -56,7 +57,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $employee = User::with('getDepartment');
         return DataTables::of($employee)
         ->addColumn('profile', function ($each) {
-            return '<div class="text-center p-2"><img src="' . $each->profilePath() . '" width="80px" height="80px" style="border-radius:10px;" class="border">'
+            return '<div class="text-center p-1"><img src="' . $each->profilePath() . '" width="70px" height="70px" style="border-radius:10px;" class="border">'
                 . '<p class="mb-0 p-1 text-mute">' . $each->name . '</p></div>';
         })
         ->addColumn('department', function ($each) {
@@ -76,21 +77,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             if ($each->status == 1) {
                 return '<span class="badge rounded-pill bg-primary">Present</span>';
             } else {
-                return '<span class="badge rounded-pill bg-danger">Absent</span>';
+                return '<span class="badge rounded-pill bg-danger">Leave</span>';
             }
         })
         ->rawColumns(['status','actions','profile'])
         ->make(true);
     }
-
-    // public function employeeListing()
-    // {
-    //     $Employee = User::SELECT("id", "name", "email", "employee_id", "department_id", "nrc_number")
-    //                 ->whereNULL("deleted_at")
-    //                 ->orderBy("id", "asc")
-    //                 ->paginate(Constant::PAGE_LIMIT);
-    //     return $Employee;
-    // }
 
     public function employeeEdit($id)
     {
