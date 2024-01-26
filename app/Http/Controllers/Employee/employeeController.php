@@ -33,6 +33,9 @@ class employeeController extends Controller
     }
     public function employeeForm()
     {
+        if(!Auth::guard('Admin')->user()->can('employee')) {
+            abort(404);
+        }
         $departments = $this->departmentRepository->getDepartments();
         $roles       = $this->roleRepository->getRoles();
         return view('layouts.Backend.Employee.employeeForm', compact(['departments','roles']));
@@ -40,6 +43,9 @@ class employeeController extends Controller
 
     public function employeeStore(employeeRequest $request)
     {
+        if(!Auth::guard('Admin')->user()->can('employee_create')) {
+            abort(404);
+        }
         try {
             $result = $this->employeeRepository->employeeStore($request->all());
             $logs    = "Employee Insert Screen ::";
@@ -58,6 +64,9 @@ class employeeController extends Controller
 
     public function employeeListing()
     {
+        if(!Auth::guard('Admin')->user()->can('employeeList_view')) {
+            abort(404);
+        }
         try {
             return view('layouts.Backend.Employee.employeeListing');
         } catch(\Exception $e) {
@@ -83,6 +92,9 @@ class employeeController extends Controller
 
     public function editForm($id)
     {
+        if(!Auth::guard('Admin')->user()->can('employee_edit')) {
+            abort(404);
+        }
         try {
             $employee    = $this->employeeRepository->employeeEdit($id);
             $roles       = $this->roleRepository->getRoles();
@@ -114,6 +126,9 @@ class employeeController extends Controller
 
     public function employeeDelete($id)
     {
+        if(!Auth::guard('Admin')->user()->can('employee_delete')){
+            abort(404);
+        }
         try {
             $result = $this->employeeRepository->getDelete($id);
             $logs   = "Employee Delete Screen :: ";
@@ -132,6 +147,9 @@ class employeeController extends Controller
 
     public function employeeDetail($id)
     {
+        if(!Auth::guard('Admin')->user()->can('employee_detail')){
+            abort(404);
+        }
         try {
             $employee = $this->employeeRepository->employeeDetail($id);
             $departments = $this->departmentRepository->getDepartments();
