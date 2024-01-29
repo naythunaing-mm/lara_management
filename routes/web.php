@@ -65,8 +65,9 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     // Role Route
     Route::prefix('role')->group(function () {
         Route::get('form', [roleController::class,'roleForm'])->name('roleForm');
-        Route::get('edit/{id}', [roleController::class,'editForm']);
-        Route::get('delete/{id}', [roleController::class, 'roleDelete']);
+        Route::get('edit/{id}', [roleController::class,'editForm'])->name('roleEdit');
+        Route::get('delete/{id}', [roleController::class, 'roleDelete'])->name('roleDelete');
+        Route::get('roleDataTable', [roleController::class, 'roleDatatableListing'])->name('roleDatatableListing');
         Route::get('roleListing', [roleController::class,'roleListing'])->name('roleListing');
         Route::post('roleUpdate', [roleController::class,'roleUpdate'])->name('roleUpdate');
         Route::post('roleStore', [roleController::class,'roleStore'])->name('roleStore');

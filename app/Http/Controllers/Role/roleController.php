@@ -46,16 +46,24 @@ class roleController extends Controller
         }
     }
 
+    public function roleDatatableListing()
+    {
+        try {
+            $roles = $this->roleRepository->roleDatatableListing();
+            if($roles) {
+                return $roles;
+            } else {
+                return abort(500);
+            }
+        } catch (\Exception $e) {
+            abort(500);
+        }
+    }
     public function roleListing()
     {
         try {
-            $roles  = $this->roleRepository->getRoles();
-            $logs   = "Roles Listing Screen :: ";
-            Utility::saveLog($logs);
-            return view('layouts.Backend.Role.roleListing', compact(['roles']));
+            return view('layouts.Backend.Role.roleListing');
         } catch(\Exception $e) {
-            $logs = "Role Listing Error ::";
-            $logs = $e->getMessage();
             abort(500);
         }
     }

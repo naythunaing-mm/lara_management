@@ -4,6 +4,7 @@ namespace App\Repository\Role;
 
 use App\Utility;
 use App\ReturnMessages;
+use Yajra\DataTables\DataTables;
 use Spatie\Permission\Models\Role;
 use App\Repository\Role\RoleRepositoryInterface;
 
@@ -72,6 +73,29 @@ class RoleRepository implements RoleRepositoryInterface
             $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
+    }
+
+    public function roleDatatableListing()
+    {
+        $roles = Role::select('id', 'name');
+
+        return Datatables::of($roles)
+            ->addColumn('actions', function ($each) {
+                $action_edit = '<a href="' . route('roleEdit', $each->id) . '"><i class="bx bx-edit-alt me-1"></i></a>';
+                $action_delete = '<a href="' . route('roleDelete', $each->id) . '"><i class="bx bx-trash me-1"></i></a>';
+                return $action_edit . " | " . $action_delete;
+            })
+            ->addColumn('permissions', function ($each) {
+                $permissionBadges = '';
+
+                foreach ($each->permissions as $permission) {
+                    $permissionBadges .= '<span class="badge rounded-pill bg-primary">' . $permission->name . '</span> ';
+                }
+
+                return $permissionBadges;
+            })
+            ->rawColumns(['actions','permissions'])
+            ->make(true);
     }
 
 }

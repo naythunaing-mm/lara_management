@@ -9,4 +9,5 @@ interface RoleRepositoryInterface
     public function editForm($id);
     public function getUpdate($paraData);
     public function getDelete($id);
+    public function roleDatatableListing();
 }
