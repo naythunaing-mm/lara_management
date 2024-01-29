@@ -13,6 +13,7 @@
                 <th>ID</th>
                 <th>Email</th>
                 <th>Department</th>
+                <th>Role</th>
                 <th>NRC</th>
                 <th>Status</th>
                 <th>Updated_at</th>
@@ -39,6 +40,7 @@
                     {"data": "employee_id"},
                     {"data": "email"},
                     {"data": "department", class: 'text-center'},
+                    {"data" : "roles"},
                     {"data": "nrc_number"},
                     {"data": "status"},
                     {"data": "updated_at"},

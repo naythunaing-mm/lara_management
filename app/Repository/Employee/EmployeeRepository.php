@@ -63,6 +63,13 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         ->addColumn('department', function ($each) {
             return $each->getDepartment ? $each->getDepartment->department : '-';
         })
+        ->addColumn('roles', function ($each) {
+            $roleBadge = '';
+            foreach($each->roles as $role) {
+                $roleBadge .= '<span class="badge rounded-pill bg-primary">' . $role->name . '</span> ';
+            }
+            return $roleBadge;
+        })
         ->addColumn('actions', function ($each) {
             $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><i class="bx bx-edit-alt me-1"></i></a>';
             $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><i class="bx bx-trash me-1"></i></a>';
@@ -80,7 +87,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
                 return '<span class="badge rounded-pill bg-danger">Leave</span>';
             }
         })
-        ->rawColumns(['status','actions','profile'])
+        ->rawColumns(['status','actions','profile','roles'])
         ->make(true);
     }
 
