@@ -16,14 +16,15 @@ class userTableSeeder extends Seeder
         // Truncate the users table before inserting new data
         DB::table('users')->truncate();
 
-         // Insert a user record
+        // Insert a user record
         DB::table('users')->insert([
             'id'            => '1',
-            'employee_id'   => 'LMS-00000001',
+            'employee_id'   => '00000001',
             'name'          => 'admin',
             'department_id' => '1',
             'nrc_number'    => '7/kakana(N)110538',
             'email'         => 'admin@gmail.com',
+            'status'        => '1',
             'password'      => bcrypt('password'),
             'created_at'    => date('Y-m-d H:i:s'),
             'updated_at'    => date('Y-m-d H:i:s'),

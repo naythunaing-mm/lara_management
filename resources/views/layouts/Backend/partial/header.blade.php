@@ -238,47 +238,56 @@
             </li>
             @endif
 
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Authentications">Role</div>
-              </a>
-              <ul class="menu-sub">
-              @if( Auth::guard('Admin')->user()->can('role_create'))
-                <li class="menu-item">
-                  <a href="{{ route('roleForm') }}" class="menu-link" />
-                    <div data-i18n="Basic">Role</div>
-                  </a>
-                </li>
-              @endif
-              @if( Auth::guard('Admin')->user()->can('roleListing_view'))
-                <li class="menu-item">
-                  <a href="{{ route('roleListing') }}" class="menu-link" />
-                    <div data-i18n="Basic">Listing</div>
-                  </a>
-                </li>
-              @endif
-              </ul>
-            </li>
+            @if( Auth::guard('Admin')->user()->can('role'))
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-box"></i>
+                  <div data-i18n="Authentications">Role</div>
+                </a>
+                <ul class="menu-sub">
+                @if( Auth::guard('Admin')->user()->can('role_create'))
+                  <li class="menu-item">
+                    <a href="{{ route('roleForm') }}" class="menu-link" />
+                      <div data-i18n="Basic">Role</div>
+                    </a>
+                  </li>
+                @endif
+                @if( Auth::guard('Admin')->user()->can('roleListing_view'))
+                  <li class="menu-item">
+                    <a href="{{ route('roleListing') }}" class="menu-link" />
+                      <div data-i18n="Basic">Listing</div>
+                    </a>
+                  </li>
+                @endif
+                </ul>
+              </li>
+            @endif
 
+            @if( Auth::guard('Admin')->user()->can('permission'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Authentications">Permission</div>
               </a>
+
               <ul class="menu-sub">
+              @if( Auth::guard('Admin')->user()->can('permission_create'))
                 <li class="menu-item">
                   <a href="{{ route('permissionForm') }}" class="menu-link" />
                     <div data-i18n="Basic">Permission</div>
                   </a>
                 </li>
+              @endif
+              @if( Auth::guard('Admin')->user()->can('permissionListing_view'))
                 <li class="menu-item">
                   <a href="{{ route('permissionListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>
+              @endif
               </ul>
             </li>
+            @endif
 
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
