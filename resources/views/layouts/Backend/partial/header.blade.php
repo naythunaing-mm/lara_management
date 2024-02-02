@@ -238,6 +238,7 @@
             </li>
             @endif
 
+            @if (Auth::guard('Admin')->user()->can('role'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
@@ -260,6 +261,7 @@
               @endif
               </ul>
             </li>
+            @endif
 
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
