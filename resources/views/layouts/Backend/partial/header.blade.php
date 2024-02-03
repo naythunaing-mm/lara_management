@@ -261,7 +261,7 @@
               @endif
               </ul>
             </li>
-
+            @endif
             @if( Auth::guard('Admin')->user()->can('role'))
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

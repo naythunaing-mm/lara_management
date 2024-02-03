@@ -6,20 +6,19 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class roleTableSeeder extends Seeder
+class departmentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('roles')->delete();
+        DB::table('departments')->truncate();
 
         // Insert a user record
-        DB::table('roles')->insert([
+        DB::table('departments')->insert([
             'id'            => '1',
-            'name'          => 'Admin',
-            'guard_name'    => 'Web',
+            'department'    => 'Admin',
             'created_at'    => date('Y-m-d H:i:s'),
             'updated_at'    => date('Y-m-d H:i:s'),
         ]);
