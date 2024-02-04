@@ -71,9 +71,9 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             return $roleBadge;
         })
         ->addColumn('actions', function ($each) {
-            $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><i class="bx bx-edit-alt me-1"></i></a>';
-            $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><i class="bx bx-trash me-1"></i></a>';
-            $action_detail = '<a href="' . route('employeeDetail', $each->id) . '"><i class="menu-icon tf-icons bx bx-copy"></i></a>';
+            $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class="bx bx-edit-alt me-1"></span></i></a>';
+            $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class=" bx bx-trash me-1"></span></i></a>';
+            $action_detail = '<a href="' . route('employeeDetail', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class=" menu-icon tf-icons bx bx-copy"></span></i></a>';
             return $action_edit . " | " . $action_delete . " | " . $action_detail;
         })
 
