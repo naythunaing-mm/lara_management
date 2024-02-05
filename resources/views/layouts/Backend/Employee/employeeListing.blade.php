@@ -10,14 +10,14 @@
             <thead>
                 <tr>
                 <th></th>
-                <th>ID</th>
+                <th>Employee ID</th>
                 <th>Email</th>
                 <th>Department</th>
                 <th>Role</th>
                 <th>NRC</th>
                 <th>Status</th>
-                <th>Updated_at</th>
                 <th>Actions</th>
+                <th>Updated_at</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
@@ -43,8 +43,8 @@
                     {"data" : "roles"},
                     {"data": "nrc_number"},
                     {"data": "status"},
+                    {"data" : "actions"},
                     {"data": "updated_at"},
-                    {"data" : "actions"}
                     
                 ],
                

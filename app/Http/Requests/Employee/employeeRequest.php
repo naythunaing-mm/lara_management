@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class employeeRequest extends FormRequest
 {
@@ -22,18 +23,38 @@ class employeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.required'          => 'please fill name',
-            'email.required'         => 'please fill email',
-            'phone.required'         => 'please fill phone',
-            'password.required'      => 'please fill password',
-            'nrc_number.required'    => 'please fill NRC number',
-            'birthday.required'      => 'please fill birthday',
-            'gender.required'        => 'please fill gender',
-            'address.required'       => 'please fill address',
-            'employee_id.required'   => 'please fill employee_id',
-            'department_id.required' => 'please fill department_id',
-            'date_of_join.required'  => 'please fill date_of_join',
-            'status.required'        => 'please fill status',
+
+            'name.required'          => 'Please fill name',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->whereNull('deleted_at')->ignore($this->id, 'id'),
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->whereNull('deleted_at')->ignore($this->id, 'id'),
+            ],
+            // 'email.required'         => 'please fill email',
+            // 'phone.required'         => 'please fill phone',
+            // 'password.required'      => 'please fill password',
+            // 'nrc_number.required'    => 'please fill NRC number',
+            // 'birthday.required'      => 'please fill birthday',
+            // 'gender.required'        => 'please fill gender',
+            // 'address.required'       => 'please fill address',
+            // 'employee_id.required'   => 'please fill employee_id',
+            // 'department_id.required' => 'please fill department_id',
+            // 'date_of_join.required'  => 'please fill date_of_join',
+            // 'status.required'        => 'please fill status',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required'  => 'Please fill name',
+            'email.required' => 'Please fill email',
+            'email.email'    => 'Invalid email format',
+            'email.unique'   => 'This email is already taken',
         ];
     }
 }

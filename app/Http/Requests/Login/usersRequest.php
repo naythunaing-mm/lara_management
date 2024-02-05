@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Requests\Login;
+
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class usersRequest extends FormRequest
@@ -21,14 +23,15 @@ class usersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => 'required',
+            'email'  => 'required',
             'password' => 'required',
         ];
     }
-    public function messages() {
+    public function messages()
+    {
         return [
             'email.required'    => 'please fill email',
-            'password.required' => 'please fill password',
+            'email.email'       => 'This email is already exist',
         ];
 
     }

@@ -11,14 +11,14 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('employee_id')->unique()->nullable();
-            $table->string('phone')->unique()->nullable();
-            $table->string('nrc_number')->unique()->nullable();
+            $table->string('employee_id')->unique();
+            $table->string('phone')->unique();
+            $table->string('nrc_number')->unique();
             $table->date('birthday')->nullable();
             $table->boolean('gender')->default(false);
             $table->text('address')->nullable();
-            $table->bigInteger('department_id')->nullable();
-            $table->date('date_of_join')->nullable();
+            $table->bigInteger('department_id');
+            $table->date('date_of_join');
             $table->boolean('status')->default(true);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
