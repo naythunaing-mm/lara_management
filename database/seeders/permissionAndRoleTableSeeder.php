@@ -1,12 +1,12 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 
 class permissionAndRoleTableSeeder extends Seeder
 {
@@ -33,6 +33,9 @@ class permissionAndRoleTableSeeder extends Seeder
         Permission::create(['name' => 'permission']);
         Permission::create(['name' => 'permission_create']);
         Permission::create(['name' => 'permissionListing_view']);
+        Permission::create(['name' => 'attendance']);
+        Permission::create(['name' => 'attendance_create']);
+        Permission::create(['name' => 'attendanceListing_view']);
 
         //seed for role table
         $role = Role::create(['name' => 'Admin']);
@@ -57,6 +60,6 @@ class permissionAndRoleTableSeeder extends Seeder
             'updated_at'    => date('Y-m-d H:i:s'),
         ]);
         $user->assignRole($role);
-  
-     }
+
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Department\departmentController;
 use App\Http\Controllers\Employee\employeeController;
@@ -60,6 +61,16 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::get('departmentListing', [departmentController::class,'departmentListing'])->name('departmentListing');
         Route::post('departmentUpdate', [departmentController::class,'departmentUpdate'])->name('departmentUpdate');
         Route::post('departmentStore', [departmentController::class,'departmentStore'])->name('departmentStore');
+    });
+
+    // Attendance Route
+    Route::prefix('attendance')->group(function () {
+        Route::get('form', [attendanceController::class, 'attendanceForm'])->name('attendanceForm');
+        Route::get('edit/{id}', [attendanceController::class,'editForm']);
+        Route::get('delete/{id}', [attendanceController::class, 'attendanceDelete']);
+        Route::get('attendanceListing', [attendanceController::class,'attendanceListing'])->name('attendanceListing');
+        Route::post('attendanceUpdate', [attendanceController::class,'attendanceUpdate'])->name('attendanceUpdate');
+        Route::post('attendanceStore', [attendanceController::class,'attendanceStore'])->name('attendanceStore');
     });
 
     // Role Route

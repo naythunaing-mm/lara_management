@@ -71,10 +71,10 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             return $roleBadge;
         })
         ->addColumn('actions', function ($each) {
-            $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class="bx bx-edit-alt me-1"></span></i></a>';
-            $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class=" bx bx-trash me-1"></span></i></a>';
-            $action_detail = '<a href="' . route('employeeDetail', $each->id) . '"><span class="badge rounded-pill bg-primary"><i class=" menu-icon tf-icons bx bx-copy"></span></i></a>';
-            return $action_edit . " | " . $action_delete . " | " . $action_detail;
+            $action_edit = '<a href="' . route('employeeEdit', $each->id) . '"><span class="badge bg-primary"><i class="bx bx-edit"></span></i></a>';
+            $action_delete = '<a href="' . route('employeeDelete', $each->id) . '"><span class="badge bg-primary"><i class=" bx bx-trash "></span></i></a>';
+            $action_detail = '<a href="' . route('employeeDetail', $each->id) . '"><span class="badge bg-primary"><i class=" bx bx-id-card "></span></i></a>';
+            return $action_edit . "  " . $action_delete . "  " . $action_detail;
         })
 
         ->editColumn('updated_at', function ($each) {

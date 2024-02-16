@@ -173,7 +173,7 @@
             @if( Auth::guard('Admin')->user()->can('employee'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon tf-icons bx bx-group'></i>
                 <div data-i18n="Account Settings">Employee</div>
               </a>
              
@@ -200,7 +200,7 @@
             @if( Auth::guard('Admin')->user()->can('hotelSetting'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                <i class='menu-icon tf-icons bx bx-cog'></i>
                 <div data-i18n="Authentications">HotelSetting</div>
               </a>
               <ul class="menu-sub">
@@ -216,7 +216,7 @@
             @if( Auth::guard('Admin')->user()->can('department'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class='menu-icon tf-icons bx bxs-collection'></i>
                 <div data-i18n="Authentications">Department</div>
               </a>
               <ul class="menu-sub">
@@ -241,7 +241,7 @@
             @if (Auth::guard('Admin')->user()->can('role'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class='menu-icon tf-icons bx bxs-category'></i>
                 <div data-i18n="Authentications">Role</div>
               </a>
               <ul class="menu-sub">
@@ -262,35 +262,12 @@
               </ul>
             </li>
             @endif
-            @if( Auth::guard('Admin')->user()->can('role'))
-              <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons bx bx-box"></i>
-                  <div data-i18n="Authentications">Role</div>
-                </a>
-                <ul class="menu-sub">
-                @if( Auth::guard('Admin')->user()->can('role_create'))
-                  <li class="menu-item">
-                    <a href="{{ route('roleForm') }}" class="menu-link" />
-                      <div data-i18n="Basic">Role</div>
-                    </a>
-                  </li>
-                @endif
-                @if( Auth::guard('Admin')->user()->can('roleListing_view'))
-                  <li class="menu-item">
-                    <a href="{{ route('roleListing') }}" class="menu-link" />
-                      <div data-i18n="Basic">Listing</div>
-                    </a>
-                  </li>
-                @endif
-                </ul>
-              </li>
-            @endif
+
 
             @if( Auth::guard('Admin')->user()->can('permission'))
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Permission</div>
               </a>
 
@@ -305,6 +282,32 @@
               @if( Auth::guard('Admin')->user()->can('permissionListing_view'))
                 <li class="menu-item">
                   <a href="{{ route('permissionListing') }}" class="menu-link" />
+                    <div data-i18n="Basic">Listing</div>
+                  </a>
+                </li>
+              @endif
+              </ul>
+            </li>
+            @endif
+
+            @if( Auth::guard('Admin')->user()->can('attendance'))
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class='menu-icon tf-icons bx bx-book-bookmark'></i>
+                <div data-i18n="Authentications">Attendance</div>
+              </a>
+
+              <ul class="menu-sub">
+              @if( Auth::guard('Admin')->user()->can('attendance_create'))
+                <li class="menu-item">
+                  <a href="{{ route('attendanceForm') }}" class="menu-link" />
+                    <div data-i18n="Basic">attendance</div>
+                  </a>
+                </li>
+              @endif
+              @if( Auth::guard('Admin')->user()->can('attendanceListing_view'))
+                <li class="menu-item">
+                  <a href="{{ route('attendanceListing') }}" class="menu-link" />
                     <div data-i18n="Basic">Listing</div>
                   </a>
                 </li>
@@ -339,7 +342,7 @@
             <!-- Views components -->
             <li class="menu-item">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <i class='menu-icon tf-icons bx bx-street-view' ></i>
                 <div data-i18n="Extended UI">Views</div>
               </a>
               <ul class="menu-sub">
