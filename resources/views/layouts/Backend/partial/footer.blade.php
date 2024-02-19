@@ -50,7 +50,8 @@
       <script src="{{ URL::asset('admin-backend/assets/vendor/libs/popper/popper.js') }}"></script>
       <script src="{{ URL::asset('admin-backend/assets/vendor/js/bootstrap.js') }}"></script>
       <script src="{{ URL::asset('admin-backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+      <script src="{{ URL::asset('admin-backend/assets/js/select2.min.js') }}"></script>
       <script src="{{ URL::asset('admin-backend/assets/vendor/js/menu.js') }}"></script>
       <!-- endbuild -->
   
@@ -64,23 +65,37 @@
       <script src="{{ URL::asset('admin-backend/assets/js/dashboards-analytics.js') }}"></script>
       <!-- Place this tag in your head or just before your close body tag. -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <script async defer src="{{ URL::asset('admin-backend/assets/js/buttons.js') }}"></script>
 
       {{-- Data Table Script --}}
-      <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
-      <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-      <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-      <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-      <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/jquery.dataTables.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/dataTables.bootstrap5.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/dataTables.responsive.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/dataTables.rowReorder.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/dataTables.buttons.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/buttons.bootstrap5.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/jszip.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/pdfmake.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/vfs_fonts.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/buttons.html5.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/buttons.print.min.js') }}"></script>
+      {{-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script> --}}
+      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> --}}
+      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> --}}
+      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script> --}}
+      {{-- <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script> --}}
 
       {{-- Datatable mark js --}}
-      <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
-      <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/mark.js(jquery.mark.min.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/mark.js') }}"></script>
+      <script src="{{ URL::asset('admin-backend/assets/js/datatables.mark.js') }}"></script>
+      {{-- <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script> --}}
 
 
       @if (session('success_msg'))

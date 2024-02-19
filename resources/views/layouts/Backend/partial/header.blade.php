@@ -42,13 +42,18 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ URL::asset('admin-backend/assets/js/config.js')}}"></script>
     <!-- select2  -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/select2.min.css') }}">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
     <!-- datatable server side  -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/responsive.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin-backend/assets/css/buttons.bootstrap5.min.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap5.min.css"> --}}
     
   </head>
 
