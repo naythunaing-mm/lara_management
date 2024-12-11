@@ -54,7 +54,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css"> --}}
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css"> --}}
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap5.min.css"> --}}
-    
+
   </head>
 
   <body>
@@ -86,7 +86,7 @@
                       d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
                       id="path-5"
                     ></path>
-                  </defs> 
+                  </defs>
                   <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
                       <g id="Icon" transform="translate(27.000000, 15.000000)">
@@ -181,7 +181,7 @@
                 <i class='menu-icon tf-icons bx bx-group'></i>
                 <div data-i18n="Account Settings">Employee</div>
               </a>
-             
+
               <ul class="menu-sub">
                 @if( Auth::guard('Admin')->user()->can('employee_create'))
                   <li class="menu-item">
@@ -200,7 +200,6 @@
               </ul>
             </li>
             @endif
-
 
             @if( Auth::guard('Admin')->user()->can('hotelSetting'))
             <li class="menu-item">
@@ -614,7 +613,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="{{ Auth::guard('Admin')->user()->profilePath() }}" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{{ Auth::guard('Admin')->user()->profilePath() }}" alt class="w-px-40 border  rounded-circle border-info" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -631,7 +630,7 @@
                             <small class="text-muted">
                               {{ optional(Auth::guard('Admin')->user()->getDepartment)->department }}
                           </small>
-                          
+
                           </div>
                         </div>
                       </a>

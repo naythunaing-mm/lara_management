@@ -32,7 +32,6 @@ class User extends Authenticatable
         'birthday',
         'gender',
         'address',
-        'employee_id',
         'department_id',
         'date_of_join',
         'status'
@@ -43,10 +42,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    protected $keyType = 'int';
+    public $incrementing = true;
+    public function getFormattedIdAttribute()
+    {
+        return 'LMS-' . str_pad($this->id, 8, '0', STR_PAD_LEFT);
+    }
 
     public function getDepartment()
     {
@@ -55,7 +62,7 @@ class User extends Authenticatable
 
     public function profilePath()
     {
-        if($this->profile) {
+        if ($this->profile) {
             return asset('Storage/employee/' . $this->profile);
         }
         return null;

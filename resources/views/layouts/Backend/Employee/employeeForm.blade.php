@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <h5 class="card-header">Register</h5>   
+                <h5 class="card-header">Register</h5>
                 <div class="card-body">
                   @if(isset($employee))
                   <form id="formAccountSettings formAuthentic ation" method="POST" class="needs-validation" action="{{ route('employeeUpdate') }}" enctype="multipart/form-data" novalidate>
@@ -27,7 +27,7 @@
                           height="130"
                           width="130"
                           id="uploadedAvatar"
-                          name="file" 
+                          name="file"
                           />
                           @endif
                       </div>
@@ -40,7 +40,7 @@
                             class="profile"
                             name='profile' multiple
                             hidden
-                            accept="image/png, image/jpeg" 
+                            accept="image/png, image/jpeg"
                           />
                         </label>
                         <div class="invalid-feedback">
@@ -57,13 +57,7 @@
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label for="employee_id" class="form-label">Employee-ID</label>
-                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="LMS-00000001" value="{{ (isset($employee)? $employee->employee_id : '') }}" autofocus required />
-                        <div class="invalid-feedback">
-                          Invalid Employee ID
-                        </div>
-                        @if ($errors->has('employee_id'))
-                          <p style="color:red">{{ $errors->first('employee_id') }}</p>
-                        @endif
+                        <input type="text" placeholder="AUTO-GENERATOR" class="form-control" id="employee_id" name="employee_id" value="{{ (isset($employee)? $employee->formatted_id : '') }}" disabled />
                       </div>
 
                       <div class="mb-3 col-md-6">

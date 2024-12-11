@@ -33,7 +33,7 @@ class employeeController extends Controller
     }
     public function employeeForm()
     {
-        if(!Auth::guard('Admin')->user()->can('employee')) {
+        if (!Auth::guard('Admin')->user()->can('employee')) {
             abort(404);
         }
         $departments = $this->departmentRepository->getDepartments();
@@ -43,7 +43,7 @@ class employeeController extends Controller
 
     public function employeeStore(employeeRequest $request)
     {
-        if(!Auth::guard('Admin')->user()->can('employee_create')) {
+        if (!Auth::guard('Admin')->user()->can('employee_create')) {
             abort(404);
         }
         try {
@@ -55,7 +55,7 @@ class employeeController extends Controller
             } else {
                 return redirect('admin-backend/employee/employeeListing')->with('error_msg', 'Insert Data Fail!');
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $logs = "Employee Insert Error ::";
             $logs = $e->getMessage();
             abort(500);
@@ -64,12 +64,12 @@ class employeeController extends Controller
 
     public function employeeListing()
     {
-        if(!Auth::guard('Admin')->user()->can('employeeList_view')) {
+        if (!Auth::guard('Admin')->user()->can('employeeList_view')) {
             abort(404);
         }
         try {
             return view('layouts.Backend.Employee.employeeListing');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             abort(500);
         }
     }
@@ -79,7 +79,7 @@ class employeeController extends Controller
     {
         try {
             $employees = $this->employeeRepository->employeeDataTable();
-            if($employees) {
+            if ($employees) {
                 return $employees;
             } else {
                 return abort(500);
@@ -92,7 +92,7 @@ class employeeController extends Controller
 
     public function editForm($id)
     {
-        if(!Auth::guard('Admin')->user()->can('employee_edit')) {
+        if (!Auth::guard('Admin')->user()->can('employee_edit')) {
             abort(404);
         }
         try {
@@ -117,7 +117,7 @@ class employeeController extends Controller
             } else {
                 return redirect('admin-backend/employee/employeeListing')->with('error_msg', 'Update Data Fail!');
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $logs = "Employee Update Error :: ";
             $logs = $e->getMessage();
             abort(500);
@@ -126,7 +126,7 @@ class employeeController extends Controller
 
     public function employeeDelete($id)
     {
-        if(!Auth::guard('Admin')->user()->can('employee_delete')){
+        if (!Auth::guard('Admin')->user()->can('employee_delete')) {
             abort(404);
         }
         try {
@@ -147,7 +147,7 @@ class employeeController extends Controller
 
     public function employeeDetail($id)
     {
-        if(!Auth::guard('Admin')->user()->can('employee_detail')){
+        if (!Auth::guard('Admin')->user()->can('employee_detail')) {
             abort(404);
         }
         try {

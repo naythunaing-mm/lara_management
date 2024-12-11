@@ -11,7 +11,6 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('employee_id')->unique();
             $table->string('phone')->unique();
             $table->string('nrc_number')->unique();
             $table->date('birthday')->nullable();
@@ -34,7 +33,6 @@ return new class () extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
-                'employee_id',
                 'phone',
                 'nrc_number',
                 'birthday',

@@ -20,7 +20,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
         try {
             $profile_name = null;
-            if(isset($paraData['profile'])) {
+            if (isset($paraData['profile'])) {
                 // Corrected the array access for the profile file
                 $profile_file = $paraData['profile'];
                 $profile_name = uniqid() . '_' . time() . '.' . $profile_file->getClientOriginalExtension();
@@ -37,7 +37,6 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj->birthday      = $paraData['birthday'];
             $paraObj->gender        = $paraData['gender'];
             $paraObj->address       = $paraData['address'];
-            $paraObj->employee_id   = $paraData['employee_id'];
             $paraObj->department_id = $paraData['department_id'];
             $paraObj->date_of_join  = $paraData['date_of_join'];
             $paraObj->status        = $paraData['status'];
@@ -46,7 +45,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $tempObj->save();
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $returnObj['LaraManagement'] = ReturnMessages::INTERNAL_SERVER_ERROR;
             return $returnObj;
         }
@@ -60,12 +59,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             return '<div class="text-center p-1"><img src="' . $each->profilePath() . '" width="70px" height="70px" style="border-radius:10px;" class="border">'
                 . '<p class="mb-0 p-1 text-mute">' . $each->name . '</p></div>';
         })
+        ->addColumn('formatted_id', function ($employee) {
+            return $employee->formatted_id; // Access the accessor
+        })
         ->addColumn('department', function ($each) {
             return $each->getDepartment ? $each->getDepartment->department : '-';
         })
         ->addColumn('roles', function ($each) {
             $roleBadge = '';
-            foreach($each->roles as $role) {
+            foreach ($each->roles as $role) {
                 $roleBadge .= '<span class="badge rounded-pill bg-primary">' . $role->name . '</span> ';
             }
             return $roleBadge;
@@ -106,7 +108,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj                = User::find($id);
 
             $profile_name = $paraObj->profile;
-            if(isset($paraData['profile'])) {
+            if (isset($paraData['profile'])) {
                 Storage::disk('public')->delete('employee/' . $paraObj->profile);
                 $profile_file = $paraData['profile'];
                 $profile_name = uniqid() . '_' . time() . '.' . $profile_file->getClientOriginalExtension();
@@ -121,7 +123,6 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj->birthday      = $paraData['birthday'];
             $paraObj->gender        = $paraData['gender'];
             $paraObj->address       = $paraData['address'];
-            $paraObj->employee_id   = $paraData['employee_id'];
             $paraObj->department_id = $paraData['department_id'];
             $paraObj->date_of_join  = $paraData['date_of_join'];
             $paraObj->status        = $paraData['status'];

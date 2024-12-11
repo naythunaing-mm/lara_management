@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <h5 class="card-header"></h5> 
+                <h5 class="card-header"></h5>
                  <!-- Account -->
                  <div class="row">
                     <div class="col-md-6 col-sm-12">
@@ -23,11 +23,11 @@
                                 height="140"
                                 width="140"
                                 id="uploadedAvatar"
-                                name="file" required 
+                                name="file" required
                                 />
                             @endif
                             <p class="mt-2 fs-4 mx-2">{{ (isset($employee)? $employee->name : '') }}</p>
-                            <span>{{ (isset($employee)? $employee->employee_id : '') }}</span> | <span class="text-success fs-5">{{ (isset($employee)? $employee->phone : '') }}</span><br>
+                            <span>{{ (isset($employee)? $employee->formatted_id : '') }}</span> | <span class="text-success fs-5">{{ (isset($employee)? $employee->phone : '') }}</span><br>
                             <span class="badge rounded-pill bg-primary">
                                 @if(optional($employee->getDepartment)->department != null)
                                     {{ $employee->getDepartment->department }}

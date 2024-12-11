@@ -44,7 +44,6 @@ class permissionAndRoleTableSeeder extends Seeder
         //seed for user table
         $user = User::create([
             'id'            => '1',
-            'employee_id'   => '00000001',
             'name'          => 'admin',
             'phone'         => '09772803152',
             'department_id' => '1',

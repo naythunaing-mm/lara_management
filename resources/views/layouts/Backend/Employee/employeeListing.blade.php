@@ -29,7 +29,7 @@
     <!--/ Hoverable Table rows -->
 @endsection
 @section('script')
-<script>
+    <script>
         $(document).ready(function () {
             $('#DataTable').DataTable({
                 processing: true,
@@ -37,7 +37,7 @@
                 ajax: '/admin-backend/employee/employee/employeeDataTable',
                 columns: [
                     {"data" : "profile",class: ''},
-                    {"data": "employee_id"},
+                    {"data": "formatted_id"},
                     {"data": "email"},
                     {"data": "department", class: 'text-center'},
                     {"data" : "roles"},
@@ -45,9 +45,9 @@
                     {"data": "status"},
                     {"data" : "actions"},
                     {"data": "updated_at"},
-                    
+
                 ],
-               
+
             });
         });
     </script>
