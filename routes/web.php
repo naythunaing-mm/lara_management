@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\Home\indexContoller;
+use App\Http\Controllers\Role\roleController;
+use App\Http\Controllers\View\viewController;
 use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Department\departmentController;
-use App\Http\Controllers\Employee\employeeController;
-use App\Http\Controllers\Home\indexContoller;
-use App\Http\Controllers\Permission\permissionController;
-use App\Http\Controllers\Role\roleController;
 use App\Http\Controllers\Setting\settingController;
-use App\Http\Controllers\View\viewController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Employee\employeeController;
+use App\Http\Controllers\Department\departmentController;
+use App\Http\Controllers\Permission\permissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,4 +100,8 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::get('edit', [settingController::class, 'editForm'])->name('siteSetting');
         Route::post('settingUpdate', [settingController::class, 'settingUpdate'])->name('settingUpdate');
     });
+
+    //QR Genereater
+    Route::get('/checkin/{id}', [QrCodeController::class, 'QRgenerator'])->name('attendance');
+    Route::post('/postCheckin', [QrCodeController::class, 'checkin'])->name('checkin');
 });

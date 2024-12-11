@@ -74,7 +74,7 @@
 
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" value="1" />
+                    <input class="form-check-input" type="checkbox" id="remember-me" value="1" checked />
                     <label class="form-check-label" for="remember-me"> Remember Me </label>
                   </div>
                 </div>
