@@ -304,7 +304,7 @@
               <ul class="menu-sub">
               @if( Auth::guard('Admin')->user()->can('attendance_create'))
                 <li class="menu-item">
-                  <a href="{{ route('attendanceForm') }}" class="menu-link" />
+                  <a href="{{ url('admin-backend/checkin/' . Auth::guard('Admin')->user()->id) }}" class="menu-link" />
                     <div data-i18n="Basic">attendance</div>
                   </a>
                 </li>
@@ -320,13 +320,6 @@
             </li>
             @endif
 
-
-            <li class="menu-item">
-                <a href="{{ url('admin-backend/checkin/' . Auth::guard('Admin')->user()->id) }}" class="menu-link" />
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Basic">Checkin/Checkout</div>
-                </a>
-            </li>
 
 
             <!-- Components -->

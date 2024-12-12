@@ -21,10 +21,8 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         try {
             $profile_name = null;
             if (isset($paraData['profile'])) {
-                // Corrected the array access for the profile file
                 $profile_file = $paraData['profile'];
                 $profile_name = uniqid() . '_' . time() . '.' . $profile_file->getClientOriginalExtension();
-                // Used store method to save the file
                 $profile_file->storeAs('employee', $profile_name, 'public');
             }
             $paraObj = new User();
@@ -41,7 +39,9 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             $paraObj->date_of_join  = $paraData['date_of_join'];
             $paraObj->status        = $paraData['status'];
             $tempObj                = Utility::addCreated($paraObj);
+
             $paraObj->syncRoles($paraData['roles']);
+
             $tempObj->save();
             $returnObj['LaraManagement'] = ReturnMessages::OK;
             return $returnObj;

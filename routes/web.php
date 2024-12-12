@@ -104,4 +104,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     //QR Genereater
     Route::get('/checkin/{id}', [QrCodeController::class, 'QRgenerator'])->name('attendance');
     Route::post('/postCheckin', [QrCodeController::class, 'checkin'])->name('checkin');
+    Route::post('/postCheckout', [QrCodeController::class, 'checkout'])->name('checkout');
+    Route::get('attendanceListing', [QrCodeController::class,'attendanceListing'])->name('attendanceListing');
+    Route::get('attendanceDataTable', [QrCodeController::class,'attendanceDataTable'])->name('attendanceDataTable');
 });
