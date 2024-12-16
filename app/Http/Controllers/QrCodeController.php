@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendance;
+use Carbon\Carbon;
 use App\Models\User;
+use Carbon\CarbonPeriod;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Repository\Role\RoleRepositoryInterface;
 use App\Repository\Employee\EmployeeRepositoryInterface;
 use App\Repository\Department\DepartmentRepositoryInterface;
-use Carbon\Carbon;
-use Yajra\DataTables\DataTables;
 
 class QrCodeController extends Controller
 {
@@ -56,7 +57,7 @@ class QrCodeController extends Controller
         if (!$attendance) {
             $attendance = new Attendance();
             $attendance->user_id = $id;
-            $attendance->created_at = Carbon::now();
+            $attendance->created_at = Carbon::now('Asia/Yangon');
             $attendance->updated_at = null;
             $attendance->date = Carbon::today();
             $attendance->save();
@@ -76,7 +77,7 @@ class QrCodeController extends Controller
             ->where('user_id', $id)
             ->first();
         if (is_null($attendance->updated_at)) {
-            $attendance->updated_at = Carbon::now();
+            $attendance->updated_at = Carbon::now('Asia/Yangon');
             $attendance->save();
             return redirect()->back()->with('success_msg', 'Check-out successful.');
         } else {
@@ -124,5 +125,13 @@ class QrCodeController extends Controller
         ->rawColumns(['actions'])
         ->make(true);
 
+    }
+
+    public function attendanceOverView()
+    {
+        $periods = new CarbonPeriod('2024-12-01', '2024-12-30');
+        $employeeList    = $this->employeeRepository->employeeList();
+        $attendances = Attendance::whereMonth('date', '12')->whereYear('date', '2024')->get();
+        return view('layouts.Backend.QR.attendanceOverView', compact(['periods','employeeList','attendances']));
     }
 }

@@ -107,4 +107,5 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     Route::post('/postCheckout', [QrCodeController::class, 'checkout'])->name('checkout');
     Route::get('attendanceListing', [QrCodeController::class,'attendanceListing'])->name('attendanceListing');
     Route::get('attendanceDataTable', [QrCodeController::class,'attendanceDataTable'])->name('attendanceDataTable');
+    Route::get('attendance-overview', [QrCodeController::class, 'attendanceOverView'])->name('attendanceOverView');
 });

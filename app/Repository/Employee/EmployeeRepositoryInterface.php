@@ -12,4 +12,5 @@ interface EmployeeRepositoryInterface
     public function employeeDetail($id);
     public function employeeDataTable();
     public function getMaxId();
+    public function employeeList();
 }

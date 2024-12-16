@@ -316,6 +316,12 @@
                   </a>
                 </li>
               @endif
+
+              <li class="menu-item">
+                  <a href="{{ route('attendanceOverView') }}" class="menu-link" />
+                    <div data-i18n="Basic">Attendance-OverView</div>
+                  </a>
+                </li>
               </ul>
             </li>
             @endif

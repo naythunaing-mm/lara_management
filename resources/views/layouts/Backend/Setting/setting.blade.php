@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>   
+                <h5 class="card-header">Profile Details</h5>
                 <hr class="my-0" />
                 <div class="card-body">
                   @if(isset($settings))
@@ -108,7 +108,7 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="checkin" class="form-label">Checkin Time</label>
-                        <input class="form-control" type="text" id="checkin" name="checkin" value="{{ (isset($settings) ? $settings->checkin : '') }}" required />
+                        <input class="form-control" type="time" id="checkin" name="checkin" value="{{ (isset($settings) ? $settings->checkin : '') }}" required />
                         <div class="invalid-feedback">
                           @if ($errors->has('checkin'))
                           <p style="color:red">Please valid checkin</p>
@@ -119,12 +119,57 @@
 
                       <div class="mb-3 col-md-6">
                         <label for="checkout" class="form-label">Checkout Time</label>
-                        <input type="text" class="form-control" id="checkout" name="checkout" value="{{ (isset($settings) ? $settings->checkout : '') }}" required />
+                        <input type="time" class="form-control" id="checkout" name="checkout" value="{{ (isset($settings) ? $settings->checkout : '') }}" required />
                           <div class="invalid-feedback">
                           @if ($errors->has('checkout'))
                           <p style="color:red">Please enter a valid checkout</p>
                           @endif
                           Invalid checkout
+                          </div>
+                      </div>
+
+                      <div class="mb-3 col-md-6">
+                        <label for="break_start" class="form-label">BrakTime Start</label>
+                        <input class="form-control" type="time" id="break_start" name="break_start" value="{{ (isset($settings) ? $settings->break_start : '') }}" required />
+                        <div class="invalid-feedback">
+                          @if ($errors->has('break_start'))
+                          <p style="color:red">Please valid break_start</p>
+                          @endif
+                          Invalid break_start
+                        </div>
+                      </div>
+
+                      <div class="mb-3 col-md-6">
+                        <label for="break_end" class="form-label">BreakTime end</label>
+                        <input type="time" class="form-control" id="break_end" name="break_end" value="{{ (isset($settings) ? $settings->break_end : '') }}" required />
+                          <div class="invalid-feedback">
+                          @if ($errors->has('break_end'))
+                          <p style="color:red">Please enter a valid break_end</p>
+                          @endif
+                          Invalid break_end
+                          </div>
+                      </div>
+
+
+                      <div class="mb-3 col-md-6">
+                        <label for="hotel_checkin" class="form-label">Hotel Checkin Time</label>
+                        <input class="form-control" type="time" id="hotel_checkin" name="hotel_checkin" value="{{ (isset($settings) ? $settings->hotel_checkin : '') }}" required />
+                        <div class="invalid-feedback">
+                          @if ($errors->has('hotel_checkin'))
+                          <p style="color:red">Please valid hotel_checkin</p>
+                          @endif
+                          Invalid hotel_checkin
+                        </div>
+                      </div>
+
+                      <div class="mb-3 col-md-6">
+                        <label for="hotel_checkout" class="form-label">Hotel Checkout Time</label>
+                        <input type="time" class="form-control" id="hotel_checkout" name="hotel_checkout" value="{{ (isset($settings) ? $settings->hotel_checkout : '') }}" required />
+                          <div class="invalid-feedback">
+                          @if ($errors->has('hotel_checkout'))
+                          <p style="color:red">Please enter a valid hotel_checkout</p>
+                          @endif
+                          Invalid hotel_checkout
                           </div>
                       </div>
 

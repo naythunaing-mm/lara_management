@@ -164,4 +164,10 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $employee = User::find($id);
         return $employee;
     }
+
+    public function employeeList()
+    {
+        $employeeList = User::where('id', '!=', 1)->orderBy('id')->get();
+        return $employeeList;
+    }
 }
