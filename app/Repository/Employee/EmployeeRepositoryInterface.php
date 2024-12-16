@@ -11,4 +11,5 @@ interface EmployeeRepositoryInterface
     public function getDelete($id);
     public function employeeDetail($id);
     public function employeeDataTable();
+    public function getMaxId();
 }

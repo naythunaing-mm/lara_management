@@ -57,7 +57,7 @@
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label for="employee_id" class="form-label">Employee-ID</label>
-                        <input type="text" placeholder="AUTO-GENERATOR" class="form-control" id="employee_id" name="employee_id" value="{{ (isset($employee)? $employee->formatted_id : '') }}" disabled />
+                        <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{ (isset($employee)? $employee->formatted_id : $formattedRegisterId) }}" disabled />
                       </div>
 
                       <div class="mb-3 col-md-6">

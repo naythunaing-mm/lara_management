@@ -99,6 +99,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return $employee;
     }
 
+    public function getMaxId()
+    {
+        $getMaxId = User::max('id');
+        return $getMaxId;
+    }
+
     public function getUpdate($paraData)
     {
         $returnObj = array();

@@ -36,9 +36,12 @@ class employeeController extends Controller
         if (!Auth::guard('Admin')->user()->can('employee')) {
             abort(404);
         }
+        $getMaxId = $this->employeeRepository->getMaxId();
+        $registerId = $getMaxId + 1;
+        $formattedRegisterId = 'LMS-' . str_pad($registerId, 8, '0', STR_PAD_LEFT);
         $departments = $this->departmentRepository->getDepartments();
         $roles       = $this->roleRepository->getRoles();
-        return view('layouts.Backend.Employee.employeeForm', compact(['departments','roles']));
+        return view('layouts.Backend.Employee.employeeForm', compact(['departments','roles','formattedRegisterId']));
     }
 
     public function employeeStore(employeeRequest $request)
@@ -158,4 +161,5 @@ class employeeController extends Controller
             abort(500);
         }
     }
+
 }
