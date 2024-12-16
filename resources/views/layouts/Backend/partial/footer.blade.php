@@ -55,6 +55,8 @@
       <script src="{{ URL::asset('admin-backend/assets/vendor/js/menu.js') }}"></script>
       <!-- endbuild -->
 
+      <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
       <!-- Vendors JS -->
       <script src="{{ URL::asset('admin-backend/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 

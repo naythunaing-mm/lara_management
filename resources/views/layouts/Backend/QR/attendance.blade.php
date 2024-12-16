@@ -2,7 +2,7 @@
 @section('title', 'Check-In/Check-Out')
 @section('content')
 
-<div class="container-xxl 100-vh">
+<div class="container-xxl vh-100">
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
             <!-- Card for Attendance -->
@@ -37,7 +37,7 @@
                         <!-- {!! $qrCode !!} -->
                          <img src="{{URL::asset('admin-backend/assets/img/QR.svg')}}" style="width: 250px;height:200px;" class="border p-3" alt="">
                          <p class="text-muted mb-1">Please Scan with QR</p>
-                         <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Scan</a>
+                         <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter"><span class="d-flex">Scan &nbsp;<box-icon name='scan'></box-icon></span></a>
                     </div>
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">

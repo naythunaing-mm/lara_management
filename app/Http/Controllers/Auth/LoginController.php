@@ -24,7 +24,7 @@ class LoginController extends Controller
         ]);
 
         if ($validation) {
-            return redirect('admin-backend/index');
+            return redirect('admin-backend/index')->with('success_msg', 'Login Successful!');
         } else {
             return redirect()->back()->withErrors(['loginErrors' => 'Wrong Email or Password'])->withInput();
         }
