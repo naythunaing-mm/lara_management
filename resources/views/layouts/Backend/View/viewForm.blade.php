@@ -5,7 +5,7 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y authentication-wrapper authentication-basic">
         <h4 class="fw-bold py-3 mb-4">
-            <span class="text-muted fw-light">Department Form/</span>
+            <span class="text-muted fw-light">View Form/</span>
             @if(isset($view))
             <span>Edit</span>
             @else

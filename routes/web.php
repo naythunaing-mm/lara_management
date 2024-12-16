@@ -42,6 +42,16 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
         Route::post('viewUpdate', [viewController::class,'viewUpdate'])->name('viewUpdate');
     });
 
+    // amenities route
+    Route::prefix('amenities')->group(function () {
+        Route::get('form', [amenitiesController::class,'amenitiesForm'])->name('amenitiesForm');
+        // Route::get('edit/{id}', [viewController::class,'editForm']);
+        // Route::get('delete/{id}', [viewController::class,'viewDelete']);
+        Route::get('amenitiesListing', [amenitiesController::class,'amenitiesListing'])->name('amenitiesListing');
+        Route::post('amenitiesStore', [amenitiesController::class,'amenitiesStore'])->name('amenitiesStore');
+        // Route::post('viewUpdate', [viewController::class,'viewUpdate'])->name('viewUpdate');
+    });
+
     // Employee Route
     Route::prefix('employee')->group(function () {
         Route::get('form', [employeeController::class,'employeeForm'])->name('employeeForm');
@@ -105,7 +115,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     Route::get('/checkin/{id}', [QrCodeController::class, 'QRgenerator'])->name('attendance');
     Route::post('/postCheckin', [QrCodeController::class, 'checkin'])->name('checkin');
     Route::post('/postCheckout', [QrCodeController::class, 'checkout'])->name('checkout');
-    Route::get('attendanceListing', [QrCodeController::class,'attendanceListing'])->name('attendanceListing');
+    Route::get('attendanceListing', [QrCodeController::class,'attendanceListing'])->name('AttendanceListing');
     Route::get('attendanceDataTable', [QrCodeController::class,'attendanceDataTable'])->name('attendanceDataTable');
     Route::get('attendance-overview', [QrCodeController::class, 'attendanceOverView'])->name('attendanceOverView');
 });

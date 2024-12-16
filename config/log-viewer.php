@@ -17,7 +17,7 @@ return [
      */
 
     'pattern'       => [
-        'prefix'    => Filesystem::PATTERN_PREFIX,    // 'laravel-'
+        'prefix'    => 'Lara MG&HOTEL-',              // 'Lara MG&HOTEL-'
         'date'      => Filesystem::PATTERN_DATE,      // '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
         'extension' => Filesystem::PATTERN_EXTENSION, // '.log'
     ],
@@ -71,7 +71,7 @@ return [
      */
 
     'download'      => [
-        'prefix'    => 'laravel-',
+        'prefix'    => 'Lara MG&HOTEL-',
 
         'extension' => 'log',
     ],
