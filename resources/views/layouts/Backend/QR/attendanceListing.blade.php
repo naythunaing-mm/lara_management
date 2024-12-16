@@ -35,8 +35,8 @@
             columns: [
                 { "data": "id" },
                 { "data": "name" },
-                { "data": "checkin" },
-                { "data": "checkout" },
+                { "data": "created_at" },
+                { "data": "updated_at" },
                 { "data": "date" },
                 { "data": "actions", orderable: false, searchable: false },
             ],

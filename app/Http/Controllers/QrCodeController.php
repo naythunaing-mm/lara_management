@@ -102,18 +102,18 @@ class QrCodeController extends Controller
             return $attendance->getUserID?->name ?? 'N/A';
         })
         ->addColumn('date', function ($attendance) {
-            return Carbon::parse($attendance->created_at)->format('Y-m-d');
+            return Carbon::parse($attendance->date)->format('Y-m-d');
         })
         ->addColumn('actions', function ($attendance) {
             return '<button class="btn btn-sm btn-primary">Edit</button>
                     <button class="btn btn-sm btn-danger">Delete</button>';
         })
-        ->editColumn('checkin', function ($attendance) {
+        ->editColumn('created_at', function ($attendance) {
             return Carbon::parse($attendance->created_at)
                 ->setTimezone('Asia/Yangon')
                 ->format('H:i:s');
         })
-        ->editColumn('checkout', function ($attendance) {
+        ->editColumn('updated_at', function ($attendance) {
             return $attendance->updated_at
                 ? Carbon::parse($attendance->updated_at)
                     ->setTimezone('Asia/Yangon')
