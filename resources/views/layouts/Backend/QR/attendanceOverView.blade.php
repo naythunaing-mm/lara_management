@@ -5,74 +5,71 @@
 <div class="container-xxl vh-100">
     <div class="card">
         <div class="card-body">
-            <div class="table-responsive text-nowrap">
-                <table class="table table-bordered">
-                    <thead>
-                        <th>Employee</th>
-                        @foreach($periods as $period)
-                            <th>{{$period->format('d')}}</th>
-                        @endforeach
-                    </thead>
-                    <tbody>
-                    @foreach($employeeList as $employee)
-                    <tr>
-                        <td>{{ $employee->name }}</td>
-                        @foreach($periods as $period)
-                            @php
-                                $checkin_icon = '';
-                                $checkout_icon = '';
-                                $attendance = collect($attendances)
-                                    ->first(function ($item) use ($employee, $period) {
-                                        return $item['user_id'] == $employee->id && $item['date'] == $period->format('Y-m-d');
-                                    });
-
-                                if ($attendance) {
-                                    $attendanceCheckinTime = \Carbon\Carbon::parse($attendance['created_at'])
-                                        ->setTimezone('Asia/Yangon')
-                                        ->format('H:i');
-
-                                    $attendanceCheckoutTime = \Carbon\Carbon::parse($attendance['updated_at'])
-                                    ->setTimezone('Asia/Yangon')
-                                    ->format('H:i');
-
-                                    $checkin_icon = '';
-                                    $checkout_icon = '';
-
-                                    $siteCheckin = getSiteSetting()->checkin;
-                                    $siteCheckout = getSiteSetting()->checkout;
-                                    $breakStart = getSiteSetting()->break_start;
-                                    $breakEnd = getSiteSetting()->break_end;
-
-                                    if ($attendanceCheckinTime < $siteCheckin) {
-                                        $checkin_icon = "<box-icon name='badge-check' type='solid' color='#2ebf0c'></box-icon>";
-                                    } elseif ($attendanceCheckinTime > $siteCheckin && $attendanceCheckinTime < $breakStart) {
-                                        $checkin_icon = "<box-icon name='badge-check' type='solid' color='#e0bb22'></box-icon>";
-                                    }else {
-                                        $checkin_icon = "<box-icon name='x-circle' type='solid' color='#e84d0d'></box-icon>";
-                                    }
-
-                                    if ($attendanceCheckoutTime > $breakEnd) {
-                                        $checkout_icon = "<box-icon name='badge-check' type='solid' color='#2ebf0c'></box-icon>";
-                                    } elseif ($attendanceCheckoutTime > $breakEnd && $attendanceCheckoutTime < $siteCheckout) {
-                                        $checkout_icon = "<box-icon name='badge-check' type='solid' color='#e0bb22'></box-icon>";
-                                    } else {
-                                        $checkout_icon = "<box-icon name='x-circle' type='solid' color='#e84d0d'></box-icon>";
-                                    }
-
-                                }
-                            @endphp
-                            <td>
-                                <div>{!! $checkin_icon !!}</div>
-                                <div>{!! $checkout_icon !!}</div>
-                            </td>
-                        @endforeach
-                        </tr>
-                    @endforeach
-
-                    </tbody>
-                </table>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="month"></label>
+                        @php
+                            $currentMonth = \Carbon\Carbon::now()->month;
+                        @endphp
+                        <select name="month" class="form-control" id="month">
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option value="{{ $i }}" {{ $i == $currentMonth ? 'selected' : '' }}>{{ \Carbon\Carbon::createFromDate(null, $i, 1)->format('F') }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="month"></label>
+                        @php
+                        $currentYear = \Carbon\Carbon::now()->year; 
+                        $startYear = $currentYear - 10; 
+                        @endphp
+                        <select name="year" class="form-control" id="year">
+                            @for ($year = $currentYear; $year >= $startYear; $year--)
+                            <option value="{{ $year }}" {{ $year == $currentYear ? 'selected' : '' }}>
+                                {{ $year }}
+                            </option>
+                        @endfor
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4">
+                    <button class="btn btn-success btn-block" id="search"><i class="fas fa search"></i>Search</button>
+                </div>
+            </div>
+            <div class="attendance-over-view-table">
             </div>
         </div>
     </div>
 </div>
 @endsection
+@section('script')
+    <script>
+        function attendanceOverViewTable(month, year) {
+            $.ajax({
+                url: `/admin-backend/attendance-overview-table?month=${month}&year=${year}`,
+                type: 'GET',
+                success: function(res) {
+                    $('.attendance-over-view-table').html(res);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching attendance overview table:', error);
+                }
+            });
+        }
+        const month = new Date().getMonth() + 1;
+        const year = new Date().getFullYear();
+        attendanceOverViewTable(month,year);
+        $('#search').on('click', function(event){
+            event.preventDefault();
+            var month = $('#month').val();
+            var year = $('#year').val();
+            console.log(month);
+            console.log(year);
+            attendanceOverViewTable(month, year);
+        });
+    </script>
+@endsection
+

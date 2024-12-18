@@ -129,9 +129,18 @@ class QrCodeController extends Controller
 
     public function attendanceOverView()
     {
-        $periods = new CarbonPeriod('2024-12-01', '2024-12-30');
+        return view('layouts.Backend.QR.attendanceOverView');
+    }
+
+    public function attendanceOverViewTable(Request $request)
+    {
+        $month = $request->month;
+        $year =  $request->year;
+        $startOfMonth = $year . '-' . $month . '-1';
+        $endOfMonth = Carbon::createFromDate($startOfMonth)->endOfMonth();
+        $periods = new CarbonPeriod($startOfMonth, $endOfMonth);
         $employeeList    = $this->employeeRepository->employeeList();
-        $attendances = Attendance::whereMonth('date', '12')->whereYear('date', '2024')->get();
-        return view('layouts.Backend.QR.attendanceOverView', compact(['periods','employeeList','attendances']));
+        $attendances = Attendance::whereMonth('date', $month)->whereYear('date', $year)->get();
+        return view('layouts.Backend.components.attendanceOverViewTable', compact(['periods','employeeList','attendances']))->render();
     }
 }
