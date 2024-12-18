@@ -20,8 +20,8 @@
                         <td>{{ $view->id }}</td>
                         <td>{{ $view->name }}</td>
                         <td>
-                            <a class="" href="{{ URL::to('admin-backend/view/edit') }}/{{ $view->id }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                            <a class="" href="{{ URL::to('admin-backend/view/delete') }}/{{ $view->id }}"><i class="bx bx-trash me-1"></i> Delete</a>
+                            <a class="pe-2" href="{{ URL::to('admin-backend/view/edit') }}/{{ $view->id }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                            <a class="ps-2" href="{{ URL::to('admin-backend/view/delete') }}/{{ $view->id }}"><i class="bx bx-trash me-1"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach

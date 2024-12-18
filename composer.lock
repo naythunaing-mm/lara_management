@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b936cf52b2a5e12ff59e6e8d81ee36a",
+    "content-hash": "48f37f2b7b9d995c71d3f6a5caf669dd",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
-            "version": "10.1.1",
+            "version": "10.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ARCANEDEV/LogViewer.git",
-                "reference": "05ab2b8b65ae293766ba9fd50ee1051269c16c90"
+                "reference": "e66b457f43f9b9c11e49c5a45193564f098c5a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/LogViewer/zipball/05ab2b8b65ae293766ba9fd50ee1051269c16c90",
-                "reference": "05ab2b8b65ae293766ba9fd50ee1051269c16c90",
+                "url": "https://api.github.com/repos/ARCANEDEV/LogViewer/zipball/e66b457f43f9b9c11e49c5a45193564f098c5a68",
+                "reference": "e66b457f43f9b9c11e49c5a45193564f098c5a68",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,7 @@
                 "laravel/framework": "^10.0",
                 "mockery/mockery": "^1.5.1",
                 "orchestra/testbench-core": "^8.0",
-                "phpunit/phpunit": "^10.1"
+                "phpunit/phpunit": "^10.0"
             },
             "type": "library",
             "extra": {
@@ -77,9 +77,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ARCANEDEV/LogViewer/issues",
-                "source": "https://github.com/ARCANEDEV/LogViewer/tree/10.1.1"
+                "source": "https://github.com/ARCANEDEV/LogViewer/tree/10.0.0"
             },
-            "time": "2024-03-17T21:37:46+00:00"
+            "time": "2023-03-02T21:41:10+00:00"
         },
         {
             "name": "arcanedev/support",
