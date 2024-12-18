@@ -9,6 +9,7 @@ use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Setting\settingController;
 use App\Http\Controllers\Employee\employeeController;
+use App\Http\Controllers\Amenities\amenitiesController;
 use App\Http\Controllers\Department\departmentController;
 use App\Http\Controllers\Permission\permissionController;
 
