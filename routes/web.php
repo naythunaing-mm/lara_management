@@ -118,4 +118,5 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => 'admin'], function ()
     Route::get('attendanceListing', [QrCodeController::class,'attendanceListing'])->name('AttendanceListing');
     Route::get('attendanceDataTable', [QrCodeController::class,'attendanceDataTable'])->name('attendanceDataTable');
     Route::get('attendance-overview', [QrCodeController::class, 'attendanceOverView'])->name('attendanceOverView');
+    Route::get('attendance-overview-table', [QrCodeController::class, 'attendanceOverViewTable'])->name('attendanceOverViewTable');
 });
