@@ -66,8 +66,6 @@
             event.preventDefault();
             var month = $('#month').val();
             var year = $('#year').val();
-            console.log(month);
-            console.log(year);
             attendanceOverViewTable(month, year);
         });
     </script>

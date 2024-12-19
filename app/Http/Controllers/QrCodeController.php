@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utility;
 use Carbon\Carbon;
 use App\Models\User;
 use Carbon\CarbonPeriod;
@@ -134,13 +135,20 @@ class QrCodeController extends Controller
 
     public function attendanceOverViewTable(Request $request)
     {
+        $weekends = [];
         $month = $request->month;
         $year =  $request->year;
         $startOfMonth = $year . '-' . $month . '-1';
         $endOfMonth = Carbon::createFromDate($startOfMonth)->endOfMonth();
         $periods = new CarbonPeriod($startOfMonth, $endOfMonth);
+        foreach ($periods as $date) {
+            if ($date->isSaturday() || $date->isSunday()) {
+                $weekends[] = $date->format('Y-m-d');
+            }
+        }
+        $publicHolidays = Utility::getPublicHolidays($year);
         $employeeList    = $this->employeeRepository->employeeList();
         $attendances = Attendance::whereMonth('date', $month)->whereYear('date', $year)->get();
-        return view('layouts.Backend.components.attendanceOverViewTable', compact(['periods','employeeList','attendances']))->render();
+        return view('layouts.Backend.components.attendanceOverViewTable', compact(['periods','employeeList','attendances','weekends','publicHolidays']))->render();
     }
 }
