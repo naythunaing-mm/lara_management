@@ -14,9 +14,20 @@
                     <td>{{ $employee->name }}</td>
                     @foreach($periods as $period)
                         @php
+                            $isWeekendDay = false;
                             $isPublicHoliday = false;
+                            $weekendDayName = null;
                             $holidayName = null;
+                            $weekendDayDate = [];
                             $publicHolidayDate = [];
+                            foreach ($weekends as $date) {
+                                $weekendDayDate[] = $date['date'];
+                                if ($date['date'] == $period->format('Y-m-d')) {
+                                    $isWeekendDay = true;
+                                    $weekendDayName = $date['name'];
+                                    break;
+                                }
+                            }
                             foreach ($publicHolidays as $holiday) {
                                 $publicHolidayDate[] = $holiday['date'];
                                 if ($holiday['date'] == $period->format('Y-m-d')) {
@@ -25,7 +36,7 @@
                                     break;
                                 }
                             }
-                            $weekends_holidays = array_merge($weekends, $publicHolidayDate);
+                            $weekends_holidays = array_merge($weekendDayDate, $publicHolidayDate);
                             $isAttendanceDay = !in_array($period->format('Y-m-d'), $weekends_holidays);
                         @endphp
                         <td>
@@ -34,8 +45,8 @@
                                     @foreach(explode(' ', $holidayName) as $word)
                                         <div>{{ $word }}</div>
                                     @endforeach
-                                @else
-                                --
+                                @elseif($isWeekendDay)
+                                    {{$weekendDayName}}
                                 @endif
                             @else
                                 @php
