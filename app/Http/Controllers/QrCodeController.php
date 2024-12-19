@@ -143,7 +143,10 @@ class QrCodeController extends Controller
         $periods = new CarbonPeriod($startOfMonth, $endOfMonth);
         foreach ($periods as $date) {
             if ($date->isSaturday() || $date->isSunday()) {
-                $weekends[] = $date->format('Y-m-d');
+                $weekends[] = [
+                    'date' => $date->format('Y-m-d'),
+                    'name' => substr($date->format('l'), 0, 3),
+                ];
             }
         }
         $publicHolidays = Utility::getPublicHolidays($year);
