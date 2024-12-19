@@ -18,7 +18,7 @@ class AttendanceSeeder extends Seeder
     {
         $users = User::all();
         foreach ($users as $user) {
-            $periods = new CarbonPeriod('2024-12-01', '2024-12-30');
+            $periods = new CarbonPeriod('2024-01-01', '2024-12-30');
             foreach ($periods as $period) {
                 $attendance = new Attendance();
                 $attendance->user_id = $user->id;
